@@ -19,7 +19,7 @@
   "dependencies": {
     "@glennsl/bs-json": "^4.0.0",
     "bs-express": "^0.12.0",
-    "bs-decode": "*",
+    "body-parser": "1.19.0",
     "bs-json": "^1.0.1"
   }
 }
