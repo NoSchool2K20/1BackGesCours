@@ -2,17 +2,18 @@
 'use strict';
 
 var Query = require("./bo/query.bs.js");
-var Js_dict = require("bs-platform/lib/js/js_dict.js");
 var Express = require("express");
+var Belt_Option = require("bs-platform/lib/js/belt_Option.js");
 
 var app = Express();
 
+app.use(Express.json());
+
 app.post("/cheh/:id", (function (req, res) {
+        Belt_Option.getWithDefault(req.query.name, "Not Set");
         console.log(req);
-        console.log(Query.decodeQuery(req));
-        console.log(Query.decodeParams(req));
-        console.log(Query.decodeBody(req));
-        Js_dict.get(Query.decodeQuery(req), "name");
+        console.log(req.query.name);
+        console.log(req.body);
         res.send(Query.makeSuccessJson(/* () */0));
         return /* () */0;
       }));

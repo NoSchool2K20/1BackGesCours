@@ -1,24 +1,34 @@
 open Query;
 
 type express;
+type middleware;
 type response;
-type handler = (Js.Json.t, response) => unit;
-[@bs.send] external get: (express, string, handler) => unit = "";
-[@bs.send] external post: (express, string, handler) => unit = "";
+type request('query, 'body) = {
+  .
+  "query": Js.t('query),
+  "body": Js.t('body),
+};
+type handler('query, 'body) = (request('query, 'body), response) => unit;
+[@bs.send] external get: (express, string, handler('query, 'body)) => unit = "";
+[@bs.send] external post: (express, string, handler('query, 'body)) => unit = "";
 [@bs.send] external send: (response, Js.Json.t) => unit = "";
 [@bs.send] external listen: (express, int) => unit = "";
 [@bs.module] external express: unit => express = "express";
+[@bs.send] external use: (express, middleware) => unit = "use";
+[@bs.module "express"] external json: unit => middleware = "json";
 
 let app = express();
+app->use(json());
+// app.use(express.json()); // for parsing application/json
 
 post(app, "/cheh/:id", (req, res) => {
+    let name = req##query##name -> Belt.Option.getWithDefault("Not Set") // if not set
     Js.log(req);
-    Js.log(decodeQuery(req));
-    Js.log(decodeParams(req));
-    Js.log(decodeBody(req));
-    let name = decodeQuery(req) -> Js.Dict.get("name");
+    Js.log(req##query##name);
+    Js.log(req##body);
     send(res, makeSuccessJson());
-});
+  },
+);
 
 listen(app, 9000);
 Js.log("listen on port 9000");
