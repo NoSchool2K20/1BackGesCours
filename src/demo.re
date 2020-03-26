@@ -13,5 +13,7 @@ get(app, "/hello", (_, res) => send(res, "hello"));
 
 get(app, "/world", (_, res) => send(res, "world"));
 
+get(app, "/teub", (_, res) => send(res, "teub"));
+
 listen(app, 9000);
 Js.log("listen on port 9000");
