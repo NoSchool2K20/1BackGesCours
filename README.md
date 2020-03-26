@@ -1,16 +1,9 @@
-
-
 # Build
 ```
 npm run build
 ```
 
-# Watch
-
+# Start
 ```
-npm run watch
+npm install && npm run build
 ```
-
-
-# Editor
-If you use `vscode`, Press `Windows + Shift + B` it will build automatically
