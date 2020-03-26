@@ -1,5 +1,3 @@
-open Query;
-
 type express;
 type middleware;
 type response;
@@ -19,14 +17,14 @@ type handler('query, 'body) = (request('query, 'body), response) => unit;
 
 let app = express();
 app->use(json());
-// app.use(express.json()); // for parsing application/json
 
 post(app, "/cheh/:id", (req, res) => {
+    Doquery.get_info("cours");
     let name = req##query##name -> Belt.Option.getWithDefault("Not Set") // if not set
     Js.log(req);
     Js.log(req##query##name);
     Js.log(req##body);
-    send(res, makeSuccessJson());
+    send(res, Request.makeSuccessJson());
   },
 );
 
