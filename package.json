@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "main": "demo.js",
   "scripts": {
-    "start": "npm run-script build -w && node src/demo.bs.js",
+    "start": "npm run-script build && node src/demo.bs.js",
     "clean": "bsb -clean-world",
     "build": "bsb -make-world",
     "watch": "bsb -make-world -w"
@@ -18,6 +18,8 @@
   },
   "dependencies": {
     "@glennsl/bs-json": "^4.0.0",
-    "bs-express": "^0.12.0"
+    "bs-express": "^0.12.0",
+    "bs-decode": "*",
+    "bs-json": "^1.0.1"
   }
 }

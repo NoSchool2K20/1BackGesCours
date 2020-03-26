@@ -1,7 +1,10 @@
+open Query;
+
 type express;
 type response;
-type handler = (string, response) => unit;
+type handler = (Js.Json.t, response) => unit;
 [@bs.send] external get: (express, string, handler) => unit = "";
+[@bs.send] external post: (express, string, handler) => unit = "";
 [@bs.send] external send: (response, string) => unit = "";
 [@bs.send] external listen: (express, int) => unit = "";
 [@bs.module] external express: unit => express = "express";
@@ -13,7 +16,10 @@ get(app, "/hello", (_, res) => send(res, "hello"));
 
 get(app, "/world", (_, res) => send(res, "world"));
 
-get(app, "/teub", (_, res) => send(res, "teub"));
+post(app, "/cheh/:id", (req, res) => {
+    Js.log(decodeQuery(req));
+    send(res, "req");
+});
 
 listen(app, 9000);
 Js.log("listen on port 9000");

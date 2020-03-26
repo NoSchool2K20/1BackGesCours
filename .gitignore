@@ -26,3 +26,4 @@ lib/bs
 .bsb.lock
 .idea
 /node_modules
+*.js
