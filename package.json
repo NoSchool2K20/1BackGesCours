@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "main": "demo.js",
   "scripts": {
-    "start": "npm run-script build && node src/demo.bs.js",
+    "start": "npm run-script build && node lib/js/src/Index.bs.js",
     "clean": "bsb -clean-world",
     "build": "bsb -make-world",
     "watch": "bsb -make-world -w"
