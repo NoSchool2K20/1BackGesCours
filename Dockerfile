@@ -1,4 +1,13 @@
 FROM node:13
-COPY lib /
 
-CMD ["node", "/js/src/Index.bs.js"] 
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+RUN npm Install
+
+COPY . .
+
+EXPOSE 9000
+
+CMD ["npm", "start"] 
