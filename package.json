@@ -19,6 +19,7 @@
   "dependencies": {
     "@glennsl/bs-json": "^4.0.0",
     "body-parser": "1.19.0",
+    "bs-platform": "7.2.2",
     "bs-express": "^0.12.0",
     "bs-json": "^1.0.1",
     "bs-mysql": "^0.2.0",
