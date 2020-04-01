@@ -5,7 +5,7 @@
   "main": "src/index.bs.js",
   "engines": {
     "npm": "6.13.6",
-    "bsb": "7.2.2",
+    "bs-platform": "7.2.2",
     "node": "12.13.0"
   },
   "scripts": {
