@@ -1,148 +1,5 @@
 open Express;
 
-//module Todos = {
-//  let getAll =
-//    PromiseMiddleware.from((_next, req, rep) => {
-//      let queryDict = Request.query(req);
-//      (
-//        switch (queryDict->Js.Dict.get("completed")) {
-//        | Some(c) =>
-//          switch (c |> Json.Decode.string |> bool_of_string_opt) {
-//          | Some(cfilter) => DataAccess.Todos.getByCompletness(cfilter)
-//          | None => DataAccess.Todos.getAll()
-//          }
-//        | None => DataAccess.Todos.getAll()
-//        }
-//      )
-//      |> Js.Promise.(
-//           then_(todoJson => {
-//             rep
-//             |> Response.setHeader("Status", "200")
-//             |> Response.sendJson(todoJson)
-//             |> resolve
-//           })
-//         );
-//    });
-//
-//  let get =
-//    PromiseMiddleware.from((_next, req, rep) =>
-//      switch (Request.params(req)->Js.Dict.get("id")) {
-//      | None => rep |> Response.sendStatus(BadRequest) |> Js.Promise.resolve
-//      | Some(id) =>
-//        id
-//        |> Json.Decode.string
-//        |> DataAccess.Todos.getById
-//        |> Js.Promise.(
-//             then_(todoJson => {
-//               rep
-//               |> Response.setHeader("Status", "200")
-//               |> Response.sendJson(todoJson)
-//               |> resolve
-//             })
-//           )
-//      }
-//    );
-//
-//  let update =
-//    PromiseMiddleware.from((_next, req, rep) =>
-//      Js.Promise.(
-//        (
-//          switch (Request.params(req)->Js.Dict.get("id")) {
-//          | None => reject(Failure("INVALID MESSAGE"))
-//          | Some(id) =>
-//            switch (Request.bodyJSON(req)) {
-//            | None => reject(Failure("INVALID MESSAGE"))
-//            | Some(reqJson) =>
-//              switch (
-//                reqJson |> Json.Decode.(field("MESSAGE", optional(string))),
-//                reqJson |> Json.Decode.(field("COMPLETED", optional(bool))),
-//              ) {
-//              | exception e => reject(e)
-//              | (Some(msg), Some(isCompleted)) =>
-//                DataAccess.Todos.update(
-//                  Json.Decode.string(id),
-//                  msg,
-//                  isCompleted,
-//                )
-//              | _ => reject(Failure("INVALID MESSAGE"))
-//              }
-//            }
-//          }
-//        )
-//        |> then_(() => {
-//             rep
-//             |> Response.setHeader("Status", "201")
-//             |> Response.sendJson(
-//                  Json.Encode.(object_([("text", string("Updated todo"))])),
-//                )
-//             |> resolve
-//           })
-//        |> catch(err => {
-//             // Sadly no way to get Js.Promise.error message in a safe way
-//             Js.log(err);
-//
-//             rep
-//             |> Response.setHeader("Status", "400")
-//             |> Response.sendJson(
-//                  Json.Encode.(
-//                    object_([
-//                      (
-//                        "error",
-//                        string("INVALID REQUEST OR MISSING MESSAGE FIELD"),
-//                      ),
-//                    ])
-//                  ),
-//                )
-//             |> resolve;
-//           })
-//      )
-//    );
-//
-//  let create =
-//    PromiseMiddleware.from((_next, req, rep) =>
-//      Js.Promise.(
-//        (
-//          switch (Request.bodyJSON(req)) {
-//          | None => reject(Failure("INVALID REQUEST"))
-//          | Some(reqJson) =>
-//            switch (
-//              reqJson |> Json.Decode.(field("MESSAGE", optional(string)))
-//            ) {
-//            | exception e => reject(e)
-//            | None => reject(Failure("INVALID MESSAGE"))
-//            | Some(msg) => DataAccess.Todos.create(msg)
-//            }
-//          }
-//        )
-//        |> then_(() => {
-//             rep
-//             |> Response.setHeader("Status", "201")
-//             |> Response.sendJson(
-//                  Json.Encode.(object_([("text", string("Created todo"))])),
-//                )
-//             |> resolve
-//           })
-//        |> catch(err => {
-//             // Sadly no way to get Js.Promise.error is an abstract type, we have no way to get its message in a safe way
-//             Js.log(err);
-//             rep
-//             |> Response.setHeader("Status", "400")
-//             |> Response.sendJson(
-//                  Json.Encode.(
-//                    object_([
-//                      (
-//                        "error",
-//                        string("INVALID REQUEST OR MISSING MESSAGE FIELD"),
-//                      ),
-//                    ])
-//                  ),
-//                )
-//             |> resolve;
-//           })
-//      )
-//    );
-//};
-
 module Cours = {
  let getAll =
      PromiseMiddleware.from((_next, req, rep) => {
@@ -164,12 +21,77 @@ module Cours = {
             })
           );
      });
+ let createCours =
+     PromiseMiddleware.from((_next, req, rep) =>
+       Js.Promise.(
+         (
+             switch (Request.bodyJSON(req)) {
+             | None => reject(Failure("INVALID MESSAGE"))
+             | Some(reqJson) =>
+               switch (
+                 reqJson |> Json.Decode.(field("title", optional(string))),
+                 reqJson |> Json.Decode.(field("description", optional(string))),
+                 reqJson |> Json.Decode.(field("video_url", optional(string))),
+                 reqJson |> Json.Decode.(field("modules", optional(string))),
+               ) {
+               | exception e => reject(e)
+               | (Some(title), Some(description), Some(video_url), Some(modules)) =>{
+                     DataAccess.Cours.create(
+                       title,
+                       description,
+                       video_url,
+                     );
+                     DataAccess.Modulecours.create(
+                        modules,
+                        title
+                     );
+                 }
+               | _ => reject(Failure("INVALID MESSAGE"))
+               }
+             }
+         )
+         |> then_(() => {
+              rep
+              |> Response.setHeader("Status", "201")
+              |> Response.sendJson(
+                   Json.Encode.(object_([("text", string("Created cours"))])),
+                 )
+              |> resolve
+            })
+         |> catch(err => {
+              // Sadly no way to get Js.Promise.error message in a safe way
+              Js.log(err);
+
+              rep
+              |> Response.setHeader("Status", "400")
+              |> Response.sendJson(
+                   Json.Encode.(
+                     object_([
+                       (
+                         "error",
+                         string("INVALID REQUEST OR MISSING MESSAGE FIELD"),
+                       ),
+                     ])
+                   ),
+                 )
+              |> resolve;
+            })
+       )
+     );
 };
 
 module Module = {
  let getAll =
      PromiseMiddleware.from((_next, req, rep) => {
-       DataAccess.Module.getAll()
+     let queryDict = Request.query(req);
+                 (
+                   switch (queryDict->Js.Dict.get("parcours")) {
+                     | Some(c) => {
+                     DataAccess.Module.getAllByParcours(c |> Json_decode.string);
+                     }
+                     | None => DataAccess.Module.getAll()
+                   }
+                 )
        |> Js.Promise.(
             then_(moduleJson => {
               rep
@@ -179,27 +101,130 @@ module Module = {
             })
           );
      });
+ let create =
+      PromiseMiddleware.from((_next, req, rep) =>
+        Js.Promise.(
+          (
+              switch (Request.bodyJSON(req)) {
+              | None => reject(Failure("INVALID MESSAGE"))
+              | Some(reqJson) =>
+                switch (
+                  reqJson |> Json.Decode.(field("title", optional(string))),
+                  reqJson |> Json.Decode.(field("description", optional(string))),
+                  reqJson |> Json.Decode.(field("parcours", optional(string))),
+                  reqJson |> Json.Decode.(field("niveau", optional(int))),
+                ) {
+                | exception e => reject(e)
+                | (Some(title), Some(description), Some(parcours),  Some(niveau)) =>{
+                      DataAccess.Module.create(
+                        title,
+                        description,
+                      );
+                      DataAccess.Parcoursmodule.create(
+                         parcours,
+                         title,
+                         niveau,
+                      );
+                  }
+                | _ => reject(Failure("INVALID MESSAGE"))
+                }
+              }
+          )
+          |> then_(() => {
+               rep
+               |> Response.setHeader("Status", "201")
+               |> Response.sendJson(
+                    Json.Encode.(object_([("text", string("Created module"))])),
+                  )
+               |> resolve
+             })
+          |> catch(err => {
+               // Sadly no way to get Js.Promise.error message in a safe way
+               Js.log(err);
 
- let getAllByModule =
-     PromiseMiddleware.from((_next, req, rep) =>
-       switch (Request.params(req)->Js.Dict.get("module")) {
-       | None => rep |> Response.sendStatus(BadRequest) |> Js.Promise.resolve
-       | Some(modules) =>
-         modules
-         |> Json.Decode.string
-         |> DataAccess.Cours.getAllByModule
-         |> Js.Promise.(
-              then_(coursJson => {
-                rep
-                |> Response.setHeader("Status", "200")
-                |> Response.sendJson(coursJson)
-                |> resolve
-              })
-            )
-       }
-     );
+               rep
+               |> Response.setHeader("Status", "400")
+               |> Response.sendJson(
+                    Json.Encode.(
+                      object_([
+                        (
+                          "error",
+                          string("INVALID REQUEST OR MISSING MESSAGE FIELD"),
+                        ),
+                      ])
+                    ),
+                  )
+               |> resolve;
+             })
+        )
+      );
 };
 
+module Parcours = {
+ let getAll =
+     PromiseMiddleware.from((_next, req, rep) => {
+       DataAccess.Parcours.getAll()
+       |> Js.Promise.(
+            then_(parcoursJson => {
+              rep
+              |> Response.setHeader("Status", "200")
+              |> Response.sendJson(parcoursJson)
+              |> resolve
+            })
+          );
+     });
+
+ let create =
+       PromiseMiddleware.from((_next, req, rep) =>
+         Js.Promise.(
+           (
+               switch (Request.bodyJSON(req)) {
+               | None => reject(Failure("INVALID MESSAGE"))
+               | Some(reqJson) =>
+                 switch (
+                   reqJson |> Json.Decode.(field("title", optional(string))),
+                   reqJson |> Json.Decode.(field("description", optional(string))),
+                 ) {
+                 | exception e => reject(e)
+                 | (Some(title), Some(description)) =>
+                       DataAccess.Parcours.create(
+                         title,
+                         description,
+                       );
+
+                 | _ => reject(Failure("INVALID MESSAGE"))
+                 }
+               }
+           )
+           |> then_(() => {
+                rep
+                |> Response.setHeader("Status", "201")
+                |> Response.sendJson(
+                     Json.Encode.(object_([("text", string("Created parcours"))])),
+                   )
+                |> resolve
+              })
+           |> catch(err => {
+                // Sadly no way to get Js.Promise.error message in a safe way
+                Js.log(err);
+
+                rep
+                |> Response.setHeader("Status", "400")
+                |> Response.sendJson(
+                     Json.Encode.(
+                       object_([
+                         (
+                           "error",
+                           string("INVALID REQUEST OR MISSING MESSAGE FIELD"),
+                         ),
+                       ])
+                     ),
+                   )
+                |> resolve;
+              })
+         )
+       );
+};
 let welcome =
   Middleware.from((_next, _req) => {
     Json.Encode.(

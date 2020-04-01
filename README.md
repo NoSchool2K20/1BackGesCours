@@ -33,9 +33,23 @@ Use command
 
 The preprod url is `http://18.220.58.155:8080` 
 
-All url available: 
-```sh
-GET /                                     |  Welcome route
-GET cours                                 |  Get all cours
-GET module                                |  Get all module
-```
+#Routes
+
+## /parcours  
+  
+| **HTTP METHOD** | **PARAMS** | **BODY** | 
+|------------|----------| -----| 
+| *GET* | X | X    
+| *POST* | X | `"title": "MIAGE",`<br>`"description": "description du parcours MIAGE"`
+
+## /module
+| **HTTP METHOD** | **PARAMS** | **BODY** | 
+|------------|----------| -----| 
+| *GET* | `parcours = <Nom du parcours>` | X    
+| *POST* | X | `"title": "Licence 3 MIAGE",`<br>`"description": "description de la L3 MIAGE",`<br>`"parcours": "MIAGE"`,<br>`"niveau" : 1`
+
+## / cours
+| **HTTP METHOD** | **PARAMS** | **BODY** | 
+|------------|----------| -----| 
+| *GET* | `module = <Nom du module>` | X    
+| *POST* | X | `"title": "POO",`<br>`"description": "description du cours de POO",`<br>`"video_url": "http://video.fr",`<br>`"modules": "Licence 3 MIAGE"`

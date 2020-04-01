@@ -24,11 +24,12 @@ App.use(app, Controller.logRequest);
 App.get(app, ~path="/", Controller.welcome);
 
 App.get(app, ~path="/cours", Controller.Cours.getAll);
-//App.post(app, ~path="/cours", Controller.Cours.create);
-//
-//App.get(app, ~path="/parcours", Controller.Parcours.getAll);
-//App.post(app, ~path="/parcours", Controller.Parcours.create);
+App.post(app, ~path="/cours", Controller.Cours.createCours);
+
+App.get(app, ~path="/parcours", Controller.Parcours.getAll);
+App.post(app, ~path="/parcours", Controller.Parcours.create);
 //
 App.get(app, ~path="/module", Controller.Module.getAll);
-//App.post(app, ~path="/module", Controller.Module.create);
+App.post(app, ~path="/module", Controller.Module.create);
+
 App.useOnPath(app, ~path="*", Controller.badRessource);

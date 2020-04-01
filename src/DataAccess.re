@@ -51,6 +51,23 @@ module Cours = {
                          |> resolve
                        })
                   );
+
+  let create = (title, description, video_url) => {
+      let cours = Model.Cours.make(title, description, video_url);
+      Js.Promise.(
+        knex
+        |> Knex.rawBinding(
+             "INSERT INTO cours VALUES ( ? , ? , ?)",
+             (
+               Model.Cours.getTitle(cours),
+               Model.Cours.getDescription(cours),
+               Model.Cours.getVideoUrl(cours),
+             ),
+           )
+        |> Knex.toPromise
+        |> then_(_ => {resolve()})
+      );
+    };
 };
 
 module Module = {
@@ -71,4 +88,117 @@ module Module = {
              |> resolve
            })
       );
+
+ let getAllByParcours : string => Js.Promise.t(Js.Json.t) =
+   parcours =>
+       Js.Promise.(
+                   knex
+                   |> Knex.fromTable("module")
+                   |> Knex.innerJoin("parcours_module", "module.title", "parcours_module.module")
+                   |> Knex.where({"parcours_module.parcours": parcours})
+                   |> Knex.orderBy("niveau")
+                   |> Knex.toPromise
+                   |> then_(results => {
+                        Module.Moduleslist.fromJson(results)
+                        |> List.map(modules => {
+                              Module.Modules.make(
+                                 Module.Modules.getTitle(modules),
+                                 Module.Modules.getDescription(modules),
+                              )
+                           })
+                        |> Module.Moduleslist.toJson
+                        |> resolve
+                      })
+                 );
+
+ let create = (title, description) => {
+       let cours = Module.Modules.make(title, description);
+       Js.Promise.(
+         knex
+         |> Knex.rawBinding(
+              "INSERT INTO module VALUES ( ? , ? )",
+              (
+                Module.Modules.getTitle(cours),
+                Module.Modules.getDescription(cours),
+              ),
+            )
+         |> Knex.toPromise
+         |> then_(_ => {resolve()})
+       );
+     };
+ };
+
+module Modulecours = {
+  let create = (modules, cours) => {
+        let moduleCours = Module_cours.Modulecours.make(modules, cours);
+        Js.Promise.(
+          knex
+          |> Knex.rawBinding(
+               "INSERT INTO module_cours VALUES ( ? , ? )",
+               (
+                 Module_cours.Modulecours.getModule(moduleCours),
+                 Module_cours.Modulecours.getCours(moduleCours),
+               ),
+             )
+          |> Knex.toPromise
+          |> then_(_ => {resolve()})
+        );
+      };
 };
+
+module Parcours = {
+  let getAll = () =>
+      Js.Promise.(
+        knex
+        |> Knex.fromTable("parcours")
+        |> Knex.toPromise
+        |> then_(results => {
+             Parcours.Parcourslist.fromJson(results)
+             |> List.map(modules => {
+                  Parcours.Parcours.make(
+                    Parcours.Parcours.getTitle(modules),
+                    Parcours.Parcours.getDescription(modules),
+                  )
+                })
+             |> Parcours.Parcourslist.toJson
+             |> resolve
+           })
+      );
+
+  let create = (title, description) => {
+          let parcours = Parcours.Parcours.make(title, description);
+          Js.Promise.(
+            knex
+            |> Knex.rawBinding(
+                 "INSERT INTO parcours VALUES ( ? , ? )",
+                 (
+                   Parcours.Parcours.getTitle(parcours),
+                   Parcours.Parcours.getDescription(parcours),
+                 ),
+               )
+            |> Knex.toPromise
+            |> then_(_ => {resolve()})
+          );
+        };
+};
+
+module Parcoursmodule = {
+  let create = (parcours, modules, niveau) => {
+          let parcoursModule = Parcours_module.Parcoursmodule.make(parcours, modules, niveau);
+          Js.Promise.(
+            knex
+            |> Knex.rawBinding(
+                 "INSERT INTO parcours_module VALUES ( ? , ?,  ? )",
+                 (
+                   Parcours_module.Parcoursmodule.getParcours(parcoursModule),
+                   Parcours_module.Parcoursmodule.getModule(parcoursModule),
+                   Parcours_module.Parcoursmodule.getNiveau(parcoursModule),
+                 ),
+               )
+            |> Knex.toPromise
+            |> then_(_ => {resolve()})
+          );
+        };
+};
+
+
