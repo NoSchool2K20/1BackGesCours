@@ -1,9 +1,13 @@
-# Build
-```
-npm run build
-```
+# 1BackGesCours
 
-# Start
-```
-npm install && npm run build
+Run those commands to use it :
+
+```sh
+npm install
+
+npm run db:create
+
+npm run build
+
+npm start
 ```
