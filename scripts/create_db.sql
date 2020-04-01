@@ -53,7 +53,3 @@ INSERT INTO parcours_module VALUES ('MIAGE', 'Master 2 MIAGE', 3);
 INSERT INTO module_cours VALUES ('Licence 3 MIAGE', 'POO');
 INSERT INTO module_cours VALUES ('Master 1 MIAGE', 'Fouille de données');
 INSERT INTO module_cours VALUES ('Master 2 MIAGE', 'QSI');
-
-"SELECT c.title, c.description, c.video_url
-  FROM cours AS c JOIN module_cours AS mc ON c.title = mc.cours
-  WHERE mc.module = '"
