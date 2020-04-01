@@ -1,1 +1,1 @@
-web: npm start
+web: npm install -g bs-platform && npm link bs-platform && npm start
