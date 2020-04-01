@@ -31,5 +31,4 @@ App.get(app, ~path="/cours", Controller.Cours.getAll);
 //
 App.get(app, ~path="/module", Controller.Module.getAll);
 //App.post(app, ~path="/module", Controller.Module.create);
-//
-//App.useOnPath(app, ~path="*", Controller.badRessource);
+App.useOnPath(app, ~path="*", Controller.badRessource);
