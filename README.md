@@ -37,18 +37,26 @@ The preprod url is `http://18.220.58.155:8080`
 
 ## /parcours  
   
+The parcours entity is made of a title and a description.
+  
 | **HTTP METHOD** | **PARAMS** | **BODY** | 
 |------------|----------| -----| 
 | *GET* | X | X    
 | *POST* | X | `"title": "MIAGE",`<br>`"description": "description du parcours MIAGE"`
 
 ## /module
+
+The module entity is made of a title and a description. We also need the refered parcours and the level of the module to know which module is the highest of the parcours
+
 | **HTTP METHOD** | **PARAMS** | **BODY** | 
 |------------|----------| -----| 
 | *GET* | `parcours = <Nom du parcours>` | X    
 | *POST* | X | `"title": "Licence 3 MIAGE",`<br>`"description": "description de la L3 MIAGE",`<br>`"parcours": "MIAGE"`,<br>`"niveau" : 1`
 
-## / cours
+## /cours
+
+The cours entity is made of a title, a description and the URL of the video of the class. We also need the module of which the class is part of.
+
 | **HTTP METHOD** | **PARAMS** | **BODY** | 
 |------------|----------| -----| 
 | *GET* | `module = <Nom du module>` | X    
