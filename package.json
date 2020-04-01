@@ -3,10 +3,6 @@
   "version": "1.0.0",
   "description": "Yet Another Todo is a sample ToDo backend API built with ReasonML and Buckelscript",
   "main": "src/index.bs.js",
-  "engines": {
-    "npm": "6.13.6",
-    "node": "12.13.0"
-  },
   "scripts": {
     "bsb:build": "bsb -make-world",
     "dev": "concurrently -c magenta,cyan \"npm:bsb:watch\" \"npm:server\"",
