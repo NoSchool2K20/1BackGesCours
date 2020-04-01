@@ -1,9 +1,8 @@
-module Cours: {
+module Modules: {
   type t;
-  let make: (string, string, string) => t;
+  let make: (string, string) => t;
   let getTitle: t => string;
   let getDescription: t => string;
-  let getVideoUrl: t => string;
   let fromJson: Js.Json.t => t;
   let fromString: string => option(t);
   let toJson: t => Js.Json.t;
@@ -12,20 +11,17 @@ module Cours: {
   type t = {
     title: string,
     description: string,
-    video_url: string,
   };
 
-  let make = (title, description, video_url) => {title, description, video_url};
+  let make = (title, description) => {title, description};
 
-  let getTitle = cours => cours.title;
-  let getDescription = cours => cours.description;
-  let getVideoUrl = cours => cours.video_url;
+  let getTitle = modules => modules.title;
+  let getDescription = modules => modules.description;
 
   let fromJson = json =>
     Json.Decode.{
       title: json |> field("title", string),
       description: json |> field("description", string),
-      video_url: json |> field("video_url", string),
     };
 
   let fromString = jsonString =>
@@ -34,28 +30,27 @@ module Cours: {
     | None => None
     };
 
-  let toJson = cours =>
+  let toJson = modules =>
     Json.Encode.(
       object_([
-        ("title", string(cours.title)),
-        ("description", string(cours.description)),
-        ("video_url", string(cours.video_url)),
+        ("title", string(modules.title)),
+        ("description", string(modules.description)),
       ])
     );
-  let toString = cours => toJson(cours) |> Js.Json.stringify;
+  let toString = modules => toJson(modules) |> Js.Json.stringify;
 };
 
-module Courslist: {
-  type t = list(Cours.t); // do not overuse abstraction when unecessary
+module Moduleslist: {
+  type t = list(Modules.t); // do not overuse abstraction when unecessary
   let fromJson: Js.Json.t => t;
   let fromString: string => option(t);
   let toJson: t => Js.Json.t;
   let toString: t => string;
 } = {
-  type t = list(Cours.t);
+  type t = list(Modules.t);
 
   let fromJson: Js.Json.t => t =
-    json => json |> Json.Decode.(list(Cours.fromJson));
+    json => json |> Json.Decode.(list(Modules.fromJson));
 
   let fromString = jsonString =>
     switch (Json.parse(jsonString)) {
@@ -63,9 +58,9 @@ module Courslist: {
     | None => None
     };
 
-  let toJson = courslist =>
-    Array.of_list(courslist)
-    |> Array.map(item => Cours.toJson(item))
+  let toJson = moduleslist =>
+    Array.of_list(moduleslist)
+    |> Array.map(item => Modules.toJson(item))
     |> Json.Encode.jsonArray;
-  let toString = courslist => toJson(courslist) |> Js.Json.stringify;
+  let toString = moduleslist => toJson(moduleslist) |> Js.Json.stringify;
 };
