@@ -35,5 +35,7 @@ The preprod url is `http://18.220.58.155:8080`
 
 All url available: 
 ```sh
-GET /                           Welcome route
+GET /                                     |  Welcome route
+GET cours                                 |  Get all cours
+GET module                                |  Get all module
 ```
