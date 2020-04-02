@@ -29,11 +29,9 @@ Use command
 ./deploy-serv.sh
 ```
 
-# Url 
+# Url & Routes
 
 The preprod url is `http://18.220.58.155:8080` 
-
-#Routes
 
 ## /parcours  
   
