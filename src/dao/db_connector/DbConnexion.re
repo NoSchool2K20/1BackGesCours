@@ -1,7 +1,7 @@
 module Dbconnexion = {
     let connection =
       KnexConfig.Connection.make(
-      ~host="127.0.0.1",
+      ~host="localhost",
       ~user="root",
       ~password="root",
       ~database="qsi",
