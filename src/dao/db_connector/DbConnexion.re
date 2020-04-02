@@ -1,6 +1,6 @@
 module Dbconnexion = {
     let connection =
-      KnexConfig.Connection.make(~filename="./database/yatdb.sqlite", ());
+      KnexConfig.Connection.make(~filename="./database/backGesCoursdb.sqlite", ());
 
     let config =
       KnexConfig.make(
