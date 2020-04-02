@@ -1,7 +1,7 @@
 {
-  "name": "yata",
+  "name": "1BackGestionCours",
   "version": "1.0.0",
-  "description": "Yet Another Todo is a sample ToDo backend API built with ReasonML and Buckelscript",
+  "description": "Back for gestion of classes",
   "main": "src/index.bs.js",
   "scripts": {
     "bsb:build": "bsb -make-world",

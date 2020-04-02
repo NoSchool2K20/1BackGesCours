@@ -7,9 +7,9 @@ module Cours = {
             (
               switch (queryDict->Js.Dict.get("module")) {
                 | Some(c) => {
-                DataAccess.Cours.getAllByModule(c |> Json_decode.string);
+                CoursDAO.Cours.getAllByModule(c |> Json_decode.string);
                 }
-                | None => DataAccess.Cours.getAll()
+                | None => CoursDAO.Cours.getAll()
               }
             )
        |> Js.Promise.(
@@ -36,12 +36,14 @@ module Cours = {
                ) {
                | exception e => reject(e)
                | (Some(title), Some(description), Some(video_url), Some(modules)) =>{
-                     DataAccess.Cours.create(
-                       title,
-                       description,
-                       video_url,
-                     );
-                     DataAccess.Modulecours.create(
+                     ignore{
+                         CoursDAO.Cours.create(
+                           title,
+                           description,
+                           video_url,
+                         );
+                     }
+                     ModuleCoursDAO.Modulecours.create(
                         modules,
                         title
                      );

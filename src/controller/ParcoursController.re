@@ -3,7 +3,7 @@ open Express;
 module Parcours = {
  let getAll =
      PromiseMiddleware.from((_next, req, rep) => {
-       DataAccess.Parcours.getAll()
+       ParcoursDAO.Parcours.getAll()
        |> Js.Promise.(
             then_(parcoursJson => {
               rep
@@ -27,7 +27,7 @@ module Parcours = {
                  ) {
                  | exception e => reject(e)
                  | (Some(title), Some(description)) =>
-                       DataAccess.Parcours.create(
+                       ParcoursDAO.Parcours.create(
                          title,
                          description,
                        );

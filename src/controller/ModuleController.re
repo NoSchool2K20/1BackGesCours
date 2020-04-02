@@ -7,9 +7,9 @@ module Module = {
                  (
                    switch (queryDict->Js.Dict.get("parcours")) {
                      | Some(c) => {
-                     DataAccess.Module.getAllByParcours(c |> Json_decode.string);
+                     ModuleDAO.Module.getAllByParcours(c |> Json_decode.string);
                      }
-                     | None => DataAccess.Module.getAll()
+                     | None => ModuleDAO.Module.getAll()
                    }
                  )
        |> Js.Promise.(
@@ -36,11 +36,13 @@ module Module = {
                 ) {
                 | exception e => reject(e)
                 | (Some(title), Some(description), Some(parcours),  Some(niveau)) =>{
-                      DataAccess.Module.create(
-                        title,
-                        description,
-                      );
-                      DataAccess.Parcoursmodule.create(
+                      ignore{
+                          ModuleDAO.Module.create(
+                            title,
+                            description,
+                          );
+                      }
+                      ParcoursModuleDAO.Parcoursmodule.create(
                          parcours,
                          title,
                          niveau,
