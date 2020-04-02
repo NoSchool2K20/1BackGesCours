@@ -1,5 +1,16 @@
 version: '3'
 services:
+  qsi-db:
+    image: mysql:5.7
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_DATABASE : "qsi"
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./script:/docker-entrypoint-initdb.d
+
   qsi-back:
     build: .
     ports:
