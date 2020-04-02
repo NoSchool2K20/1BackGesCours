@@ -56,14 +56,12 @@ module Cours = {
               rep
               |> Response.setHeader("Status", "201")
               |> Response.sendJson(
-                   Json.Encode.(object_([("text", string("Created cours"))])),
+                   Json.Encode.(object_([("success", string("Created cours"))])),
                  )
               |> resolve
             })
          |> catch(err => {
-              // Sadly no way to get Js.Promise.error message in a safe way
               Js.log(err);
-
               rep
               |> Response.setHeader("Status", "400")
               |> Response.sendJson(

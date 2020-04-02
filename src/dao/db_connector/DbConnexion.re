@@ -1,10 +1,17 @@
 module Dbconnexion = {
     let connection =
-      KnexConfig.Connection.make(~filename="./database/backGesCoursdb.sqlite", ());
+      KnexConfig.Connection.make(
+      ~host="192.168.99.100",
+      ~user="root",
+      ~password="root",
+      ~database="qsi",
+      ()
+      );
 
     let config =
       KnexConfig.make(
-        ~client="sqlite3",
+        ~client="mysql2",
+        ~version="5.7",
         ~connection,
         ~acquireConnectionTimeout=2000,
         (),
