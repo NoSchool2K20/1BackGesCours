@@ -18,15 +18,15 @@ module Cours = {
         |> Knex.fromTable("cours")
         |> Knex.toPromise
         |> then_(results => {
-             Model.Courslist.fromJson(results)
+             Cours.Courslist.fromJson(results)
              |> List.map(cours => {
-                  Model.Cours.make(
-                    Model.Cours.getTitle(cours),
-                    Model.Cours.getDescription(cours),
-                    Model.Cours.getVideoUrl(cours),
+                  Cours.Cours.make(
+                    Cours.Cours.getTitle(cours),
+                    Cours.Cours.getDescription(cours),
+                    Cours.Cours.getVideoUrl(cours),
                   )
                 })
-             |> Model.Courslist.toJson
+             |> Cours.Courslist.toJson
              |> resolve
            })
       );
@@ -39,29 +39,29 @@ module Cours = {
                     |> Knex.where({"module_cours.module": modules})
                     |> Knex.toPromise
                     |> then_(results => {
-                         Model.Courslist.fromJson(results)
+                         Cours.Courslist.fromJson(results)
                          |> List.map(cours => {
-                              Model.Cours.make(
-                                Model.Cours.getTitle(cours),
-                                Model.Cours.getDescription(cours),
-                                Model.Cours.getVideoUrl(cours),
+                              Cours.Cours.make(
+                                Cours.Cours.getTitle(cours),
+                                Cours.Cours.getDescription(cours),
+                                Cours.Cours.getVideoUrl(cours),
                               )
                             })
-                         |> Model.Courslist.toJson
+                         |> Cours.Courslist.toJson
                          |> resolve
                        })
                   );
 
   let create = (title, description, video_url) => {
-      let cours = Model.Cours.make(title, description, video_url);
+      let cours = Cours.Cours.make(title, description, video_url);
       Js.Promise.(
         knex
         |> Knex.rawBinding(
              "INSERT INTO cours VALUES ( ? , ? , ?)",
              (
-               Model.Cours.getTitle(cours),
-               Model.Cours.getDescription(cours),
-               Model.Cours.getVideoUrl(cours),
+               Cours.Cours.getTitle(cours),
+               Cours.Cours.getDescription(cours),
+               Cours.Cours.getVideoUrl(cours),
              ),
            )
         |> Knex.toPromise

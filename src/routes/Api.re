@@ -23,13 +23,13 @@ App.use(app, Controller.logRequest);
 // SETUP ROUTES
 App.get(app, ~path="/", Controller.welcome);
 
-App.get(app, ~path="/cours", Controller.Cours.getAll);
-App.post(app, ~path="/cours", Controller.Cours.createCours);
+App.get(app, ~path="/cours", CoursController.Cours.getAll);
+App.post(app, ~path="/cours", CoursController.Cours.createCours);
 
-App.get(app, ~path="/parcours", Controller.Parcours.getAll);
-App.post(app, ~path="/parcours", Controller.Parcours.create);
+App.get(app, ~path="/parcours", ParcoursController.Parcours.getAll);
+App.post(app, ~path="/parcours", ParcoursController.Parcours.create);
 //
-App.get(app, ~path="/module", Controller.Module.getAll);
-App.post(app, ~path="/module", Controller.Module.create);
+App.get(app, ~path="/module", ModuleController.Module.getAll);
+App.post(app, ~path="/module", ModuleController.Module.create);
 
 App.useOnPath(app, ~path="*", Controller.badRessource);
