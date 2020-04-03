@@ -1,10 +1,15 @@
+[@bs.val] external bdd_host : string = "process.env.BDD_HOST";
+[@bs.val] external bdd_user : string = "process.env.BDD_USER";
+[@bs.val] external bdd_password : string = "process.env.BDD_PASSWORD";
+[@bs.val] external bdd_db_name : string = "process.env.BDD_DB_NAME";
+
 module Dbconnexion = {
     let connection =
       KnexConfig.Connection.make(
-      ~host="18.220.58.155",
-      ~user="root",
-      ~password="root",
-      ~database="qsi",
+      ~host=bdd_host,
+      ~user=bdd_user,
+      ~password=bdd_password,
+      ~database=bdd_db_name,
       ()
       );
 

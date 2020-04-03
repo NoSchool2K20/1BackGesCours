@@ -1,6 +1,7 @@
 /**
- * Start listening on port 3000
+ * Start listening on port 8080
  */
+
 let onListen = e =>
   switch (e) {
   | exception (Js.Exn.Error(e)) =>
