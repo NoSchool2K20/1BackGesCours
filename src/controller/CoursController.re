@@ -9,7 +9,12 @@ module Cours = {
                 | Some(c) => {
                 CoursDAO.Cours.getAllByModule(c |> Json_decode.string);
                 }
-                | None => CoursDAO.Cours.getAll()
+                | None => switch (queryDict->Js.Dict.get("title")) {
+                                          | Some(c) => {
+                                          CoursDAO.Cours.getAllByTitle(c |> Json_decode.string);
+                                          }
+                                          | None => CoursDAO.Cours.getAll()
+                                        }
               }
             )
        |> Js.Promise.(
@@ -21,6 +26,7 @@ module Cours = {
             })
           );
      });
+
  let createCours =
      PromiseMiddleware.from((_next, req, rep) =>
        Js.Promise.(
