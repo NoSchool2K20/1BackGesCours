@@ -2,6 +2,8 @@ language: node_js
 
 script:
      - echo Hello pour mon premier build travis
+     - npm install 
+     - npm run build
 
 after_success:
     - echo Fin
