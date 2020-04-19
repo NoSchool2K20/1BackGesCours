@@ -5,7 +5,7 @@ script:
      - npm install 
      - npm run build
      - echo "$PREPROD_PEM" > preprod.pem
-     - ssh -i preprod.pem ec2-user@ec2-18-220-58-155.us-east-2.compute.amazonaws.com ./start.sh
+     - ssh -o StrictHostKeyChecking=no -i preprod.pem ec2-user@ec2-18-220-58-155.us-east-2.compute.amazonaws.com ./start.sh
 
 after_success:
     - echo Fin
