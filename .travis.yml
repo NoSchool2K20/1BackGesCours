@@ -4,6 +4,7 @@ script:
      - echo Hello pour mon premier build travis
      - npm install 
      - npm run build
+     - ssh ec2-user@ec2-18-220-58-155.us-east-2.compute.amazonaws.com ./start.sh
 
 after_success:
     - echo Fin
