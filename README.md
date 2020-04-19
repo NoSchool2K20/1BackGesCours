@@ -57,5 +57,5 @@ The cours entity is made of a title, a description and the URL of the video of t
 
 | **HTTP METHOD** | **PARAMS** | **BODY** | 
 |------------|----------| -----| 
-| *GET* | `module = <Nom du module>` | X    
+| *GET* | `module = <Nom du module>` <br><br> `title = <titre a filtrer>` | X    
 | *POST* | X | `"title": "POO",`<br>`"description": "description du cours de POO",`<br>`"video_url": "http://video.fr",`<br>`"modules": "Licence 3 MIAGE"`
