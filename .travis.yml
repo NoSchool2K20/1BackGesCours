@@ -1,0 +1,7 @@
+language: node_js
+
+script:
+     - echo Hello pour mon premier build travis
+
+after_success:
+    - echo Fin
