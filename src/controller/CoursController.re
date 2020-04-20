@@ -49,11 +49,13 @@ module Cours = {
                            video_url,
                          );
                      }
+                     ignore{
+                      RabbitMQ.sendMessage(title);
+                     }
                      ModuleCoursDAO.Modulecours.create(
                         modules,
                         title
-                     );
-                     RabbitMQ.sendMessage(title);
+                     );    
                  }
                | _ => reject(Failure("INVALID MESSAGE"))
                }

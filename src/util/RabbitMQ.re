@@ -40,8 +40,8 @@ let channelWrapper =
     },
   );
 
-
-let rec sendMessage = (courseName) => {
+// Send a message with the courseName as payload
+let rec sendMessage = (courseName : string) => {
   Amqp.ChannelWrapper.sendToQueue(
     channelWrapper,
     queue_name,
@@ -54,14 +54,13 @@ let rec sendMessage = (courseName) => {
          setTimeout(() => resolve(. msg), 1000) |> ignore
        );
      })
-  |> Js.Promise.then_(_ => sendMessage())
+  /* |> Js.Promise.then_(_ => JS)
   |> Js.Promise.catch(err => {
        Js.Console.error(err);
        Amqp.ChannelWrapper.close(channelWrapper);
        Amqp.AmqpConnectionManager.close(connection);
 
        Js.Promise.resolve();
-     });
+     }); */
 };
 
-sendMessage();
