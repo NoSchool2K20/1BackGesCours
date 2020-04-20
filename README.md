@@ -12,6 +12,15 @@ npm start
 
 The server is available on the port 8080
 
+#For the dev
+
+create and fill the DB 
+
+```
+docker-compose up -d qsi-db
+docker exec -it <CONTAINER ID> mysql -u root -proot -e "$(cat script/create_db.sql)"
+```
+
 # Via docker
 ```sh
 docker-compose up -d 
