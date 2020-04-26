@@ -50,7 +50,7 @@ module Cours = {
                          );
                      }
                      ignore{
-                      RabbitMQ.sendMessage(title);
+                      RabbitMQ.newCourse(title);
                      }
                      ModuleCoursDAO.Modulecours.create(
                         modules,

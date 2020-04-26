@@ -1,7 +1,8 @@
 module Amqp = AmqpConnectionManager;
 [@bs.val] external setTimeout: (unit => unit, int) => int = "setTimeout";
 
-let queue_name = "QnewCourse";
+let newCourse_qn = "QnewCourse";
+let viewCourse_qn = "QnewCourse";
 
 // Create a connetion manager
 let amqp_u = "qzscetiz"
@@ -22,8 +23,8 @@ Amqp.AmqpConnectionManager.on(
 )
 |> ignore;
 
-// Set up a channel listening for messages in the queue.
-let channelWrapper =
+// Set up a channel listening for messages in the queue QnewCourse.
+let channelNewWrapper =
   Amqp.AmqpConnectionManager.createChannel(
     connection,
     {
@@ -32,7 +33,25 @@ let channelWrapper =
         // `channel` here is a regular amqplib `ConfirmChannel`.
         Js.Promise.(
           all([|
-            Amqp.Channel.assertQueue(channel, queue_name, {"durable": true})
+            Amqp.Channel.assertQueue(channel, newCourse_qn, {"durable": true})
+            |> then_(_ => resolve()),
+          |])
+          |> then_(_ => resolve())
+        ),
+    },
+  );
+
+  // Set up a channel listening for messages in the queue QvewCourse.
+let channelViewWrapper =
+  Amqp.AmqpConnectionManager.createChannel(
+    connection,
+    {
+      "json": true,
+      "setup": channel =>
+        // `channel` here is a regular amqplib `ConfirmChannel`.
+        Js.Promise.(
+          all([|
+            Amqp.Channel.assertQueue(channel, viewCourse_qn, {"durable": true})
             |> then_(_ => resolve()),
           |])
           |> then_(_ => resolve())
@@ -41,10 +60,10 @@ let channelWrapper =
   );
 
 // Send a message with the courseName as payload
-let rec sendMessage = (courseName : string) => {
+let rec newCourse = (courseName : string) => {
   Amqp.ChannelWrapper.sendToQueue(
-    channelWrapper,
-    queue_name,
+    channelNewWrapper,
+    newCourse_qn,
     {"CourseName": courseName},
     Js.Obj.empty(),
   )
