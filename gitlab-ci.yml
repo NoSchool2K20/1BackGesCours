@@ -14,14 +14,4 @@ stages:
 build-back:
   image: trion/ng-cli
   stage: build
-  script: "npm install && npm run build"
-
-deploy-prod:
-  image: rastasheep/ubuntu-sshd
-  stage: deploy
-  script:
-  - chmod 600 ../1backgestioncours.tmp/PROD_PEM
-  - ssh -i $PROD_PEM -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $PROD_SERVER_ADDRESS './start.sh'
-  only:
-  - master
-
+  script: "echo coucou"
