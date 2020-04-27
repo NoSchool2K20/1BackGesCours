@@ -5,7 +5,7 @@ services:
 variables:
   DOCKER_DRIVER: overlay
   SPRING_PROFILES_ACTIVE: gitlab-ci
-  DEV_SERVER_ADDRESS: ec2-user@18.220.58.155
+  SERVER_ADDRESS: ec2-user@18.220.58.155
 
 stages:
   - build
@@ -21,6 +21,6 @@ deploy-prod:
   stage: deploy
   script:
   - chmod 600 ../1backgestioncours.tmp/PROD_PEM
-  - ssh -i $PROD_PEM -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $PROD_SERVER_ADDRESS './start.sh'
+  - ssh -i $PROD_PEM -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $SERVER_ADDRESS './start.sh'
   only:
   - master
