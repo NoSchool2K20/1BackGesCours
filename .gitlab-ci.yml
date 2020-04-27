@@ -12,10 +12,7 @@ stages:
   - pushing
   - deploy
 
-build-back:
-  image: trion/ng-cli
-  stage: build
-  script: "npm install && npm run build"
+
 
 push-github:
   image: sombralibre/gitclient
@@ -23,7 +20,7 @@ push-github:
   script: 
   - git remote set-url origin https://$GIT_ACCOUNT:$GIT_CREDENTIAL@github.com/NoSchool2K20/1BackGesCours.git
   - git stash 
-  - git pull --rebase
+  - git pull origin master --rebase
   - git stash pop
   - git add .
   - git commit -m "new feature integrate by gitlab ci"
