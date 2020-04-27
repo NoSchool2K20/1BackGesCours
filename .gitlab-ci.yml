@@ -19,9 +19,9 @@ push-github:
   stage: pushing
   script: 
   - git remote set-url origin https://$GIT_ACCOUNT:$GIT_CREDENTIAL@github.com/NoSchool2K20/1BackGesCours.git
-  - git stash 
-  - git pull origin master --rebase
-  - git stash pop
+  - git pull origin master
+  - git status
+  - ls
   - git add .
   - git commit -m "new feature integrate by gitlab ci"
   - git push origin master
