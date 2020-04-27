@@ -12,7 +12,10 @@ stages:
   - pushing
   - deploy
 
-
+front-build:
+  image: trion/ng-cli
+  stage: build
+  script: "npm install && npm run build"
 
 push-github:
   image: sombralibre/gitclient
