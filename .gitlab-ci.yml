@@ -25,6 +25,8 @@ push-github:
   - git config --global user.name "Adrien deblock"
   - git remote set-url origin https://$GIT_ACCOUNT:$GIT_CREDENTIAL@github.com/NoSchool2K20/1BackGesCours.git
   - git push origin ${CI_COMMIT_SHA}:master
+  only:
+  - master
 
 deploy-prod:
   image: rastasheep/ubuntu-sshd
