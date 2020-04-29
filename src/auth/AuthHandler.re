@@ -29,9 +29,36 @@ let studentCheck = PromiseMiddleware.from((next, req, rep) => {
             |> then_((permition) => {
                 switch permition {
                 | true => resolve(rep |> next(Next.middleware))
-                | false => resolve(rep |> Response.sendStatus(Unauthorized))
+                | false => resolve(rep   |> Response.status(Unauthorized)
+                                         |> Response.sendJson(
+                                              Json.Encode.(
+                                                object_([
+                                                  (
+                                                    "error",
+                                                    string("Unauthorized"),
+                                                  ),
+                                                ])
+                                              ),
+                                            )
+                                    );
                 };
             })
+            |> catch(err => {
+                          Js.log(err);
+                          rep
+                          |> Response.setHeader("Status", "400")
+                          |> Response.sendJson(
+                               Json.Encode.(
+                                 object_([
+                                   (
+                                     "error",
+                                     string("Unauthorized"),
+                                   ),
+                                 ])
+                               ),
+                             )
+                          |> resolve;
+                        })
         );
         
 });
@@ -46,7 +73,18 @@ let profCheck = PromiseMiddleware.from((next, req, rep) => {
             |> then_((permition) => {
                 switch permition {
                 | true => resolve(rep |> next(Next.middleware))
-                | false => resolve(rep |> Response.sendStatus(Unauthorized))
+                | false => resolve(rep  |> Response.status(Unauthorized)
+                                        |> Response.sendJson(
+                                             Json.Encode.(
+                                               object_([
+                                                 (
+                                                   "error",
+                                                   string("Unauthorized"),
+                                                 ),
+                                               ])
+                                             ),
+                                           )
+                                   );
                 };
             })
         );
@@ -63,7 +101,18 @@ let adminCheck = PromiseMiddleware.from((next, req, rep) => {
             |> then_((permition) => {
                 switch permition {
                 | true => resolve(rep |> next(Next.middleware))
-                | false => resolve(rep |> Response.sendStatus(Unauthorized))
+                | false => resolve(rep  |> Response.status(Unauthorized)
+                                        |> Response.sendJson(
+                                             Json.Encode.(
+                                               object_([
+                                                 (
+                                                   "error",
+                                                   string("Unauthorized"),
+                                                 ),
+                                               ])
+                                             ),
+                                           )
+                                   );
                 };
             })
         );
