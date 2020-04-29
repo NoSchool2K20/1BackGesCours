@@ -33,29 +33,42 @@ Use command
 
 The preprod url is `http://18.220.58.155:8080` 
 
+For each route to call, you need to put your user token in the header of the request
+
+## Hierarchie of role 
+
+We have 3 differents roles
+ - Étudiant
+ - Professeur 
+ - Administrateur
+
+And more
+ - an Administrateur can do everything that a Professeur and Étudiant can do
+ - a Professeur can do everything that an Étudiant can do
+ - an Etudiant is the basic role of our application
 ## /parcours  
   
 The parcours entity is made of a title and a description.
   
-| **HTTP METHOD** | **PARAMS** | **BODY** | 
+| **HTTP METHOD** | **HEADER** | **PARAMS** | **BODY** | **MINIMAL ROLE** |
 |------------|----------| -----| 
-| *GET* | X | X    
-| *POST* | X | `"title": "MIAGE",`<br>`"description": "description du parcours MIAGE"`
+| *GET* | Authorization : Bearer <token> | X | X | Étudiant
+| *POST* | Authorization : Bearer <token> | X | `"title": "MIAGE",`<br>`"description": "description du parcours MIAGE"` | Administrateur
 
 ## /module
 
 The module entity is made of a title and a description. We also need the refered parcours and the level of the module to know which module is the highest of the parcours
 
-| **HTTP METHOD** | **PARAMS** | **BODY** | 
+| **HTTP METHOD** | **HEADER** | **PARAMS** | **BODY** | **MINIMAL ROLE** |
 |------------|----------| -----| 
-| *GET* | `parcours = <Nom du parcours>` | X    
-| *POST* | X | `"title": "Licence 3 MIAGE",`<br>`"description": "description de la L3 MIAGE",`<br>`"parcours": "MIAGE"`,<br>`"niveau" : 1`
+| *GET* | Authorization : Bearer <token> | `parcours = <Nom du parcours>` | X | Étudiant  
+| *POST* | Authorization : Bearer <token> | X | `"title": "Licence 3 MIAGE",`<br>`"description": "description de la L3 MIAGE",`<br>`"parcours": "MIAGE"`,<br>`"niveau" : 1` | Administrateur
 
 ## /cours
 
 The cours entity is made of a title, a description and the URL of the video of the class. We also need the module of which the class is part of.
 
-| **HTTP METHOD** | **PARAMS** | **BODY** | 
+| **HTTP METHOD** | **HEADER** | **PARAMS** | **BODY** | **MINIMAL ROLE** |
 |------------|----------| -----| 
-| *GET* | `module = <Nom du module>` <br><br> `title = <titre a filtrer>` | X    
-| *POST* | X | `"title": "POO",`<br>`"description": "description du cours de POO",`<br>`"video_url": "http://video.fr",`<br>`"modules": "Licence 3 MIAGE"`
+| *GET* | Authorization : Bearer <token> | `module = <Nom du module>` <br><br> `title = <titre a filtrer>` | X | Étudiant   
+| *POST* | Authorization : Bearer <token> | X | `"title": "POO",`<br>`"description": "description du cours de POO",`<br>`"video_url": "http://video.fr",`<br>`"modules": "Licence 3 MIAGE"` | Professeur
