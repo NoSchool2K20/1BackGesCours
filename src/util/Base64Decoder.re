@@ -25,7 +25,7 @@ module Decoder = {
             switch response##data {
             | true => {
               let role = decodeToken(token);
-              resolve(role.userRole === roleToSatisfy);
+              resolve(Js.Array.includes(role.userRole, roleToSatisfy));
             }
             | _ => resolve(false)
             };
