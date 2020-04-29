@@ -2,7 +2,7 @@ module Amqp = AmqpConnectionManager;
 [@bs.val] external setTimeout: (unit => unit, int) => int = "setTimeout";
 
 let newCourse_qn = "QnewCourse";
-let viewCourse_qn = "QnewCourse";
+let viewCourse_qn = "QviewCourse";
 
 // Create a connetion manager
 let amqp_u = "qzscetiz"
@@ -83,3 +83,29 @@ let rec newCourse = (courseName : string) => {
      }); */
 };
 
+// Send a message with the courseName and username as payload on the viewCourseQueue
+let rec viewCourse = (courseName : string , username : string) => {
+  Amqp.ChannelWrapper.sendToQueue(
+    channelViewWrapper,
+    viewCourse_qn,
+    {"CourseName": courseName ,
+     "Username" : username},
+    Js.Obj.empty(),
+  )
+  |> Js.Promise.then_(msg => {
+       Js.Console.info("Message sent viewCourse");
+       Js.Promise.make((~resolve, ~reject as _) =>
+         setTimeout(() => resolve(. msg), 1000) |> ignore
+       );
+     })
+  /* |> Js.Promise.then_(_ => JS)
+  |> Js.Promise.catch(err => {
+       Js.Console.error(err);
+       Amqp.ChannelWrapper.close(channelWrapper);
+       Amqp.AmqpConnectionManager.close(connection);
+
+       Js.Promise.resolve();
+     }); */
+};
+
+viewCourse("test" , "test");
