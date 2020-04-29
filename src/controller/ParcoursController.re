@@ -52,7 +52,7 @@ module Parcours = {
                 Js.log(err);
 
                 rep
-                |> Response.setHeader("Status", "400")
+                |> Response.status(BadRequest)
                 |> Response.sendJson(
                      Json.Encode.(
                        object_([
