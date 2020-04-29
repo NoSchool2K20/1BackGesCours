@@ -4,7 +4,7 @@ type auth = {
     authorization: string
 };
 
-let studentHierarchie = [|"Nouveau", "Professeur", "Administrateur"|];
+let studentHierarchie = [|"Étudiant", "Professeur", "Administrateur"|];
 let teacherHierarchie = [|"Professeur", "Administrateur"|];
 let adminHierarchie = [|"Administrateur"|];
 
