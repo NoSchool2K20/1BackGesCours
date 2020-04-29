@@ -9,14 +9,21 @@ let decodeToken = (json: option(Js.Json.t)) =>
             | None =>  Json.Decode.{
                         authorization: ""
                       };
-            | Some(t) => Json.Decode.{
-                         authorization: t |> field("authorization", string)
-                       };
+            | Some(t) => try(Json.Decode.{ authorization: t |> field("authorization", string)}){
+                         | e => Json.Decode.
+                                {
+                                  authorization: ""
+                                };
+                         };
         };
 
 let getToken = req => {
      let headerDict = decodeToken(Request.asJsonObject(req)->Js.Dict.get("headers"));
-     Js.String.split(" ", headerDict.authorization)[1];
+     if (headerDict.authorization === ""){
+        "error";
+     }else{
+        Js.String.split(" ", headerDict.authorization)[1];
+     }
  }
 
 let studentCheck = PromiseMiddleware.from((next, req, rep) => {
@@ -43,22 +50,6 @@ let studentCheck = PromiseMiddleware.from((next, req, rep) => {
                                     );
                 };
             })
-            |> catch(err => {
-                          Js.log(err);
-                          rep
-                          |> Response.setHeader("Status", "400")
-                          |> Response.sendJson(
-                               Json.Encode.(
-                                 object_([
-                                   (
-                                     "error",
-                                     string("Unauthorized"),
-                                   ),
-                                 ])
-                               ),
-                             )
-                          |> resolve;
-                        })
         );
         
 });
