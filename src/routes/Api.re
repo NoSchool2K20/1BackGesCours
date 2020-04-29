@@ -26,13 +26,13 @@ App.use(app, Controller.logRequest);
 // SETUP ROUTES
 App.get(app, ~path="/", Controller.welcome);
 
-App.get(app, ~path="/cours", CoursController.Cours.getAll);
-App.post(app, ~path="/cours", CoursController.Cours.createCours);
+App.getWithMany(app, ~path="/cours", [|AuthHandler.studentCheck, CoursController.Cours.getAll|]);
+App.postWithMany(app, ~path="/cours", [|AuthHandler.profCheck, CoursController.Cours.createCours|]);
 
-App.get(app, ~path="/parcours", ParcoursController.Parcours.getAll);
-App.post(app, ~path="/parcours", ParcoursController.Parcours.create);
-//
-App.get(app, ~path="/module", ModuleController.Module.getAll);
-App.post(app, ~path="/module", ModuleController.Module.create);
+App.getWithMany(app, ~path="/parcours", [|AuthHandler.studentCheck, ParcoursController.Parcours.getAll|]);
+App.postWithMany(app, ~path="/parcours", [|AuthHandler.adminCheck, ParcoursController.Parcours.create|]);
+
+App.getWithMany(app, ~path="/module", [|AuthHandler.studentCheck, ModuleController.Module.getAll|]);
+App.postWithMany(app, ~path="/module", [|AuthHandler.adminCheck, ModuleController.Module.create|]);
 
 App.useOnPath(app, ~path="*", Controller.badRessource);
