@@ -1,8 +1,27 @@
 open Express;
 
+type auth = {
+      authorization: string
+    };
+
+let decodeToken = (json: option(Js.Json.t)) =>
+        switch json {
+            | None =>  Json.Decode.{
+                        authorization: ""
+                      };
+            | Some(t) => Json.Decode.{
+                         authorization: t |> field("authorization", string)
+                       };
+        };
+
+let getToken = req => {
+     let headerDict = decodeToken(Request.asJsonObject(req)->Js.Dict.get("headers"));
+     Js.String.split(" ", headerDict.authorization)[1];
+ }
+
 let studentCheck = PromiseMiddleware.from((next, req, rep) => {
         let permitionP = Base64Decoder.Decoder.verifyPermission(
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZhbGVudGludGFydGFyZTU5QGdtYWlsLmNvbSIsInBzZXVkbyI6InRlYW0xIiwibmFtZSI6InRlc3QiLCJzdXJuYW1lIjoidGVzdCIsInVzZXJSb2xlIjoiTm91dmVhdSIsImlhdCI6MTU4Nzk2OTg5OCwiZXhwIjoxNTg4MjI5MDk4fQ.8lg_WPv9HQDKq8zIPDyBfWRZKx_Hr4IDnf12MxSd2Ic", 
+          getToken(req),
           "Étudiant"
         );
         
@@ -19,7 +38,7 @@ let studentCheck = PromiseMiddleware.from((next, req, rep) => {
 
 let profCheck = PromiseMiddleware.from((next, req, rep) => {
         let permitionP = Base64Decoder.Decoder.verifyPermission(
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZhbGVudGludGFydGFyZTU5QGdtYWlsLmNvbSIsInBzZXVkbyI6InRlYW0xIiwibmFtZSI6InRlc3QiLCJzdXJuYW1lIjoidGVzdCIsInVzZXJSb2xlIjoiTm91dmVhdSIsImlhdCI6MTU4Nzk2OTg5OCwiZXhwIjoxNTg4MjI5MDk4fQ.8lg_WPv9HQDKq8zIPDyBfWRZKx_Hr4IDnf12MxSd2Ic", 
+          getToken(req),
           "Professeur"
         );
         
@@ -36,10 +55,10 @@ let profCheck = PromiseMiddleware.from((next, req, rep) => {
 
 let adminCheck = PromiseMiddleware.from((next, req, rep) => {
         let permitionP = Base64Decoder.Decoder.verifyPermission(
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZhbGVudGludGFydGFyZTU5QGdtYWlsLmNvbSIsInBzZXVkbyI6InRlYW0xIiwibmFtZSI6InRlc3QiLCJzdXJuYW1lIjoidGVzdCIsInVzZXJSb2xlIjoiTm91dmVhdSIsImlhdCI6MTU4Nzk2OTg5OCwiZXhwIjoxNTg4MjI5MDk4fQ.8lg_WPv9HQDKq8zIPDyBfWRZKx_Hr4IDnf12MxSd2Ic", 
+          getToken(req),
           "Administrateur"
         );
-        
+
         Js.Promise.(permitionP 
             |> then_((permition) => {
                 switch permition {

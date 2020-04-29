@@ -1,6 +1,11 @@
 open Express;
 
+type auth = {
+  authorization: string
+};
+
 module Cours = {
+
  let getAll =
      PromiseMiddleware.from((_next, req, rep) => {
       let queryDict = Request.query(req);
