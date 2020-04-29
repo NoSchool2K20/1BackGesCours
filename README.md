@@ -46,29 +46,30 @@ And more
  - an Administrateur can do everything that a Professeur and Étudiant can do
  - a Professeur can do everything that an Étudiant can do
  - an Etudiant is the basic role of our application
+ 
 ## /parcours  
   
 The parcours entity is made of a title and a description.
   
-| **HTTP METHOD** | **HEADER** | **PARAMS** | **BODY** | **MINIMAL ROLE** |
-|------------|----------| -----| 
-| *GET* | Authorization : Bearer <token> | X | X | Étudiant
-| *POST* | Authorization : Bearer <token> | X | `"title": "MIAGE",`<br>`"description": "description du parcours MIAGE"` | Administrateur
+| **HTTP METHOD** | **HEADER** | **PARAMS** | **BODY** | **MINIMAL_ROLE** |
+|------------|---------|-------| -----| -----| 
+| *GET* | Authorization : Bearer -token- | X | X | Étudiant
+| *POST* | Authorization : Bearer -token- | X | `"title": "MIAGE",`<br>`"description": "description du parcours MIAGE"` | Administrateur
 
 ## /module
 
 The module entity is made of a title and a description. We also need the refered parcours and the level of the module to know which module is the highest of the parcours
 
-| **HTTP METHOD** | **HEADER** | **PARAMS** | **BODY** | **MINIMAL ROLE** |
-|------------|----------| -----| 
-| *GET* | Authorization : Bearer <token> | `parcours = <Nom du parcours>` | X | Étudiant  
-| *POST* | Authorization : Bearer <token> | X | `"title": "Licence 3 MIAGE",`<br>`"description": "description de la L3 MIAGE",`<br>`"parcours": "MIAGE"`,<br>`"niveau" : 1` | Administrateur
+| **HTTP METHOD** | **HEADER** | **PARAMS** | **BODY** | **MINIMAL_ROLE** |
+|------------|---------|-------| -----| -----|
+| *GET* | Authorization : Bearer -token- | `parcours = <Nom du parcours>` | X | Étudiant
+| *POST* | Authorization : Bearer -token- | X | `"title": "Licence 3 MIAGE",`<br>`"description": "description de la L3 MIAGE",`<br>`"parcours": "MIAGE"`,<br>`"niveau" : 1` | Administrateur
 
 ## /cours
 
 The cours entity is made of a title, a description and the URL of the video of the class. We also need the module of which the class is part of.
 
-| **HTTP METHOD** | **HEADER** | **PARAMS** | **BODY** | **MINIMAL ROLE** |
-|------------|----------| -----| 
-| *GET* | Authorization : Bearer <token> | `module = <Nom du module>` <br><br> `title = <titre a filtrer>` | X | Étudiant   
-| *POST* | Authorization : Bearer <token> | X | `"title": "POO",`<br>`"description": "description du cours de POO",`<br>`"video_url": "http://video.fr",`<br>`"modules": "Licence 3 MIAGE"` | Professeur
+| **HTTP METHOD** | **HEADER** | **PARAMS** | **BODY** | **MINIMAL_ROLE** |
+|------------|---------|-------| -----| -----| 
+| *GET* | Authorization : Bearer -token- | `module = <Nom du module>`  <br><br>  `title = <titre a filtrer>` | X | Étudiant
+| *POST* | Authorization : Bearer token- | X | `"title": "POO",`<br>`"description": "description du cours de POO",`<br>`"video_url": "http://video.fr",`<br>`"modules": "Licence 3 MIAGE"` | Professeur
