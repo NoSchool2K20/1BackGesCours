@@ -22,7 +22,7 @@ module Decoder = {
             | true => {
               let jsonFromToken = decode(token);
               let role = decodeToken(jsonFromToken);
-              resolve(role.userRole === roleToSatisfy);
+              resolve(Js.Array.includes(role.userRole, roleToSatisfy));
             }
             | _ => resolve(false)
             };
