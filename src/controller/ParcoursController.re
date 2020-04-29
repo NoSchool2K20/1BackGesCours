@@ -5,7 +5,7 @@ module Parcours = {
  let getAll = PromiseMiddleware.from((_next, req, rep) => {
         let permissionP = Base64Decoder.Decoder.verifyPermission(
           "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZhbGVudGludGFydGFyZTU5QGdtYWlsLmNvbSIsInBzZXVkbyI6InRlYW0xIiwibmFtZSI6InRlc3QiLCJzdXJuYW1lIjoidGVzdCIsInVzZXJSb2xlIjoiTm91dmVhdSIsImlhdCI6MTU4Nzk2OTg5OCwiZXhwIjoxNTg4MjI5MDk4fQ.8lg_WPv9HQDKq8zIPDyBfWRZKx_Hr4IDnf12MxSd2Ic",
-          "Nouveau"
+          [|"Nouveau"|]
         );
         Js.Promise.(permissionP
           |> then_(permission => {
