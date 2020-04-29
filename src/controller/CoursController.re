@@ -9,6 +9,8 @@ module Cours = {
  let getAll =
      PromiseMiddleware.from((_next, req, rep) => {
       let queryDict = Request.query(req);
+      let user = Base64Decoder.Decoder.decodeToken(AuthHandler.getAuthorization(Request.asJsonObject(req)->Js.Dict.get("headers")).authorization).email;
+      Js.Console.info(user);
             (
               switch (queryDict->Js.Dict.get("module")) {
                 | Some(c) => {

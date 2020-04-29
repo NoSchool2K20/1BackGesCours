@@ -8,7 +8,7 @@ let studentHierarchie = [|"Étudiant", "Professeur", "Administrateur"|];
 let teacherHierarchie = [|"Professeur", "Administrateur"|];
 let adminHierarchie = [|"Administrateur"|];
 
-let decodeToken = (json: option(Js.Json.t)) =>
+let getAuthorization = (json: option(Js.Json.t)) =>
     switch json {
     | None =>  Json.Decode.{authorization: ""};
     | Some(t) => try(Json.Decode.{ authorization: t |> field("authorization", string)}){
@@ -18,7 +18,7 @@ let decodeToken = (json: option(Js.Json.t)) =>
 
 
 let getToken = req => {
-    let headerDict = decodeToken(Request.asJsonObject(req)->Js.Dict.get("headers"));
+    let headerDict = getAuthorization(Request.asJsonObject(req)->Js.Dict.get("headers"));
     if (headerDict.authorization === "") {
       "error";
     } else{
@@ -43,6 +43,7 @@ let permitionCheck = hierarchie => next => req => rep => {
         })
     );
 };
+
 
 let studentCheck = PromiseMiddleware.from((next, req, rep) => {
   permitionCheck(studentHierarchie, next, req, rep);
