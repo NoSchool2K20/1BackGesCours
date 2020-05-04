@@ -17,8 +17,8 @@ module Cours = {
                 }
                 | None => switch (queryDict->Js.Dict.get("title")) {
                                           | Some(c) => {
+                                          RabbitMQ.viewCourse(userLogin , c |> Json_decode.string);
                                           CoursDAO.Cours.getAllByTitle(c |> Json_decode.string);
-                                          RabbitMQ.viewCourse(userLogin , c);
                                           }
                                           | None => CoursDAO.Cours.getAll()
                                         }
