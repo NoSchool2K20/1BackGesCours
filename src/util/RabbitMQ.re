@@ -108,4 +108,3 @@ let rec viewCourse = (courseName : string , username : string) => {
      }); */
 };
 
-viewCourse("test" , "test");

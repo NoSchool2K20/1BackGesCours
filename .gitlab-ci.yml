@@ -1,0 +1,38 @@
+image: docker:latest
+services:
+  - docker:dind
+
+variables:
+  DOCKER_DRIVER: overlay
+  SPRING_PROFILES_ACTIVE: gitlab-ci
+  SERVER_ADDRESS: ec2-user@18.220.58.155
+
+stages:
+  - build
+  - pushing
+  - deploy
+
+front-build:
+  image: trion/ng-cli
+  stage: build
+  script: "npm install && npm run build"
+
+push-github:
+  image: sombralibre/gitclient
+  stage: pushing
+  script: 
+  - git config --global user.email "deblock.adrien62@yahoo.fr"
+  - git config --global user.name "Adrien deblock"
+  - git remote set-url origin https://$GIT_ACCOUNT:$GIT_CREDENTIAL@github.com/NoSchool2K20/1BackGesCours.git
+  - git push origin ${CI_COMMIT_SHA}:master
+  only:
+  - master
+
+deploy-prod:
+  image: rastasheep/ubuntu-sshd
+  stage: deploy
+  script:
+  - chmod 600 ../1backgestioncours.tmp/PROD_PEM
+  - ssh -i $PROD_PEM -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $SERVER_ADDRESS './start.sh'
+  only:
+  - master

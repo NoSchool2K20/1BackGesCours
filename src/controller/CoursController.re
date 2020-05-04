@@ -1,9 +1,15 @@
 open Express;
 
+type auth = {
+  authorization: string
+};
+
 module Cours = {
+
  let getAll =
      PromiseMiddleware.from((_next, req, rep) => {
       let queryDict = Request.query(req);
+      let userLogin = Base64Decoder.Decoder.decodeToken(AuthHandler.getToken(req)).email;
             (
               switch (queryDict->Js.Dict.get("module")) {
                 | Some(c) => {
@@ -12,6 +18,7 @@ module Cours = {
                 | None => switch (queryDict->Js.Dict.get("title")) {
                                           | Some(c) => {
                                           CoursDAO.Cours.getAllByTitle(c |> Json_decode.string);
+                                          RabbitMQ.viewCourse(userLogin , c);
                                           }
                                           | None => CoursDAO.Cours.getAll()
                                         }
@@ -72,7 +79,7 @@ module Cours = {
          |> catch(err => {
               Js.log(err);
               rep
-              |> Response.setHeader("Status", "400")
+              |> Response.status(BadRequest)
               |> Response.sendJson(
                    Json.Encode.(
                      object_([

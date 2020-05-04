@@ -1,7 +1,8 @@
 open Express;
 
 module Parcours = {
- let getAll =
+
+  let getAll =
      PromiseMiddleware.from((_next, req, rep) => {
        ParcoursDAO.Parcours.getAll()
        |> Js.Promise.(
@@ -13,6 +14,8 @@ module Parcours = {
             })
           );
      });
+
+
 
  let create =
        PromiseMiddleware.from((_next, req, rep) =>
@@ -49,7 +52,7 @@ module Parcours = {
                 Js.log(err);
 
                 rep
-                |> Response.setHeader("Status", "400")
+                |> Response.status(BadRequest)
                 |> Response.sendJson(
                      Json.Encode.(
                        object_([
