@@ -12,7 +12,7 @@ let getAuthorization = (json: option(Js.Json.t)) =>
     switch json {
     | None =>  Json.Decode.{authorization: ""};
     | Some(t) => try(Json.Decode.{ authorization: t |> field("authorization", string)}){
-                    | e => Json.Decode.{authorization: ""};
+                    | _ => Json.Decode.{authorization: ""};
                 };
     };
 

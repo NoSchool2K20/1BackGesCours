@@ -6,8 +6,6 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: "root"
       MYSQL_DATABASE : "qsi"
-    ports:
-      - "3306:3306"
     volumes:
       - ./script:/docker-entrypoint-initdb.d
 
