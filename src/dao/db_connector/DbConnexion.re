@@ -6,10 +6,10 @@
 module Dbconnexion = {
     let connection =
       KnexConfig.Connection.make(
-      ~host="192.168.99.100",
-      ~user="root",
-      ~password="root",
-      ~database="qsi",
+      ~host=bdd_host,
+      ~user=bdd_user,
+      ~password=bdd_password,
+      ~database=bdd_db_name,
       ()
       );
 
