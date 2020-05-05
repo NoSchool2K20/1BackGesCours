@@ -47,13 +47,13 @@ For each route to call, you need to put your user token in the header of the req
 ## Hierarchie of role 
 
 We have 3 differents roles
- - Étudiant
+ - Etudiant
  - Professeur 
  - Administrateur
 
 And more
- - an Administrateur can do everything that a Professeur and Étudiant can do
- - a Professeur can do everything that an Étudiant can do
+ - an Administrateur can do everything that a Professeur and Etudiant can do
+ - a Professeur can do everything that an Etudiant can do
  - an Etudiant is the basic role of our application
  
 ## /parcours  
@@ -62,7 +62,7 @@ The parcours entity is made of a title and a description.
   
 | **HTTP METHOD** | **HEADER** | **PARAMS** | **BODY** | **MINIMAL_ROLE** |
 |------------|---------|-------| -----| -----| 
-| *GET* | Authorization : Bearer -token- | X | X | Étudiant
+| *GET* | Authorization : Bearer -token- | X | X | Etudiant
 | *POST* | Authorization : Bearer -token- | X | `"title": "MIAGE",`<br>`"description": "description du parcours MIAGE"` | Administrateur
 
 ## /module
@@ -71,7 +71,7 @@ The module entity is made of a title and a description. We also need the refered
 
 | **HTTP METHOD** | **HEADER** | **PARAMS** | **BODY** | **MINIMAL_ROLE** |
 |------------|---------|-------| -----| -----|
-| *GET* | Authorization : Bearer -token- | `parcours = <Nom du parcours>` | X | Étudiant
+| *GET* | Authorization : Bearer -token- | `parcours = <Nom du parcours>` | X | Etudiant
 | *POST* | Authorization : Bearer -token- | X | `"title": "Licence 3 MIAGE",`<br>`"description": "description de la L3 MIAGE",`<br>`"parcours": "MIAGE"`,<br>`"niveau" : 1` | Administrateur
 
 ## /cours
