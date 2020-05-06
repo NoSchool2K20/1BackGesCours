@@ -24,8 +24,15 @@ back-test-integration:
     entrypoint: [""]
   stage: test
   script: 
-  - "newman --version"
-  - "docker ps"
+  - newman --version
+  - npm install -g newman-reporter-html
+  - newman run test/qsi_test_inte_local.postman_collection.json --reporters cli,html,junit --reporter-html-export report.html --reporter-junit-export report.xml
+  artifacts:
+    when: always
+    paths:
+    - report.html
+    reports:
+      junit: report.xml
 
 push-github:
   image: sombralibre/gitclient
