@@ -25,7 +25,9 @@ deploy-preprod:
   stage: testdeploy
   script:
   - chmod 600 ../1backgestioncours.tmp/PPROD_PEM
-  - ssh -i $PPROD_PEM -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $TEST_SERVER_ADDRESS './start.sh ${CI_COMMIT_BRANCH}'
+  - ssh -i $PPROD_PEM -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $TEST_SERVER_ADDRESS './start.sh'
+  only:
+  - master
 
 back-test-integration:
   image: 
@@ -42,6 +44,8 @@ back-test-integration:
     - report.html
     reports:
       junit: report.xml
+  only:
+  - master
 
 push-github:
   image: sombralibre/gitclient
