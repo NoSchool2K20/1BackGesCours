@@ -9,7 +9,7 @@ module Cours = {
  let getAll =
      PromiseMiddleware.from((_next, req, rep) => {
       let queryDict = Request.query(req);
-      let userLogin = Base64Decoder.Decoder.decodeToken(AuthHandler.getToken(req)).email;
+      let token = Base64Decoder.Decoder.decodeToken(AuthHandler.getToken(req));
             (
               switch (queryDict->Js.Dict.get("module")) {
                 | Some(c) => {
@@ -17,7 +17,7 @@ module Cours = {
                 }
                 | None => switch (queryDict->Js.Dict.get("title")) {
                                           | Some(c) => {
-                                          RabbitMQ.viewCourse(c |> Json_decode.string, userLogin);
+                                          RabbitMQ.viewCourse(c |> Json_decode.string, token.name, token.email);
                                           CoursDAO.Cours.getAllByTitle(c |> Json_decode.string);
                                           }
                                           | None => CoursDAO.Cours.getAll()
@@ -35,7 +35,8 @@ module Cours = {
      });
 
  let createCours =
-     PromiseMiddleware.from((_next, req, rep) =>
+     PromiseMiddleware.from((_next, req, rep) => {
+       let token = Base64Decoder.Decoder.decodeToken(AuthHandler.getToken(req));
        Js.Promise.(
          (
              switch (Request.bodyJSON(req)) {
@@ -57,7 +58,7 @@ module Cours = {
                          );
                      }
                      ignore{
-                      RabbitMQ.newCourse(title);
+                      RabbitMQ.newCourse(title, token.name, token.email);
                      }
                      ModuleCoursDAO.Modulecours.create(
                         modules,
@@ -93,5 +94,5 @@ module Cours = {
               |> resolve;
             })
        )
-     );
+     });
 };

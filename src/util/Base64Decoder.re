@@ -3,7 +3,8 @@ open Json_encode;
 
 type tokenRole = {
   email: string,
-  userRole: string
+  userRole: string,
+  name : string
 };
 
 module Decoder = {
@@ -11,7 +12,8 @@ module Decoder = {
           let jsonFromToken = decode(token);
           Json.Decode.{
             email: jsonFromToken |> field("email", string),
-            userRole: jsonFromToken |> field("userRole", string)
+            userRole: jsonFromToken |> field("userRole", string),
+            name : jsonFromToken |> field("name", string)
           };
       };
 

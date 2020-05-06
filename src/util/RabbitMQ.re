@@ -23,6 +23,36 @@ Amqp.AmqpConnectionManager.on(
 )
 |> ignore;
 
+let createContent = (username : string, email : string, content : string, subject : string) => {
+    let message = {
+          "personalizations":
+          [
+              {
+                  "to":
+                  [
+                      {
+                          "email": email,
+                          "name": username
+                      }
+                  ],
+                  "subject": subject
+              }
+          ],
+          "from":
+          {
+              "email": "admin@noschool2k20.fr",
+              "name": "NoReply NoSchool 2K20"
+          },
+          "content":
+          [
+              {
+                  "type": "text/plain",
+                  "value": content
+              }
+          ]
+     }
+ };
+
 // Set up a channel listening for messages in the queue QnewCourse.
 let channelNewWrapper =
   Amqp.AmqpConnectionManager.createChannel(
@@ -59,12 +89,13 @@ let channelViewWrapper =
     },
   );
 
-// Send a message with the courseName as payload
-let rec newCourse = (courseName : string) => {
+let newCourse = (courseName : string , username : string, email : string) => {
+  let content = "Nous vous confirmons la création de votre cours "++courseName;
+  let subject = "Création d'un nouveau cours !";
   Amqp.ChannelWrapper.sendToQueue(
     channelNewWrapper,
     newCourse_qn,
-    {"CourseName": courseName},
+    createContent(username, email, content, subject),
     Js.Obj.empty(),
   )
   |> Js.Promise.then_(msg => {
@@ -73,23 +104,15 @@ let rec newCourse = (courseName : string) => {
          setTimeout(() => resolve(. msg), 1000) |> ignore
        );
      })
-  /* |> Js.Promise.then_(_ => JS)
-  |> Js.Promise.catch(err => {
-       Js.Console.error(err);
-       Amqp.ChannelWrapper.close(channelWrapper);
-       Amqp.AmqpConnectionManager.close(connection);
-
-       Js.Promise.resolve();
-     }); */
 };
 
-// Send a message with the courseName and username as payload on the viewCourseQueue
-let rec viewCourse = (courseName : string , username : string) => {
+let viewCourse = (courseName : string , username : string, email : string) => {
+  let content = "Le cours " ++ courseName ++ " vient d'être consulté";
+  let subject = "Consultation d'un cours";
   Amqp.ChannelWrapper.sendToQueue(
     channelViewWrapper,
     viewCourse_qn,
-    {"CourseName": courseName ,
-     "Username" : username},
+    createContent(username, email, content, subject),
     Js.Obj.empty(),
   )
   |> Js.Promise.then_(msg => {
@@ -98,13 +121,5 @@ let rec viewCourse = (courseName : string , username : string) => {
          setTimeout(() => resolve(. msg), 1000) |> ignore
        );
      })
-  /* |> Js.Promise.then_(_ => JS)
-  |> Js.Promise.catch(err => {
-       Js.Console.error(err);
-       Amqp.ChannelWrapper.close(channelWrapper);
-       Amqp.AmqpConnectionManager.close(connection);
-
-       Js.Promise.resolve();
-     }); */
 };
 
