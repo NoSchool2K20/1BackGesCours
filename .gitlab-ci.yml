@@ -24,7 +24,6 @@ deploy-preprod:
   image: rastasheep/ubuntu-sshd
   stage: testdeploy
   script:
-  - echo ${CI_COMMIT_BRANCH}
   - chmod 600 ../1backgestioncours.tmp/PPROD_PEM
   - ssh -i $PPROD_PEM -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $TEST_SERVER_ADDRESS './start.sh ${CI_COMMIT_BRANCH}'
 
