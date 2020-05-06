@@ -527,12 +527,9 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "192.168.99.100:8080/parcours",
+					"raw": "{{host_url}}:8080/parcours",
 					"host": [
-						"192",
-						"168",
-						"99",
-						"100"
+						"{{host_url}}"
 					],
 					"port": "8080",
 					"path": [
@@ -2229,37 +2226,37 @@
 	],
 	"variable": [
 		{
-			"id": "429d1fc6-fde6-4fa0-a8df-340b767bcac1",
+			"id": "4187ff93-969b-4ce7-af9c-2f018809c703",
 			"key": "etu_token",
 			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImV0dWRpYW50QHRlc3QuY29tIiwicHNldWRvIjoiZXR1ZGlhbnQiLCJuYW1lIjoiZXR1ZGlhbnQiLCJzdXJuYW1lIjoiZXR1ZGlhbnQiLCJ1c2VyUm9sZSI6IkV0dWRpYW50IiwiaWF0IjoxNTg4NzAwMDAzLCJleHAiOjE1ODg5NTkyMDN9.7dP16z-H82s1-QekAje50uUxswm-D5RxcWuzlBr3Fl0",
 			"type": "string"
 		},
 		{
-			"id": "78dccc28-90d4-434e-b6b0-fe87dfee38a4",
+			"id": "0b83d554-8a35-47b0-88d5-d5224d89e2ec",
 			"key": "prof_token",
 			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InByb2Zlc3NldXJAdGVzdC5jb20iLCJwc2V1ZG8iOiJwcm9mZXNzZXVyIiwibmFtZSI6InByb2Zlc3NldXIiLCJzdXJuYW1lIjoicHJvZmVzc2V1ciIsInVzZXJSb2xlIjoiUHJvZmVzc2V1ciIsImlhdCI6MTU4ODY5OTY3MiwiZXhwIjoxNTg4OTU4ODcyfQ.PRqjPU7QZXsvPbb45wo-AqbAjIh7EEnuA3FPvrFjsLQ",
 			"type": "string"
 		},
 		{
-			"id": "ec730212-d81c-42cd-b1b9-e468528e476f",
+			"id": "968dc85e-4865-4b23-a403-6c35c091b5ce",
 			"key": "admin_token",
 			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHRlc3QuY29tIiwicHNldWRvIjoiYWRtaW4iLCJuYW1lIjoiYWRtaW4iLCJzdXJuYW1lIjoiYWRtaW4iLCJ1c2VyUm9sZSI6IkFkbWluaXN0cmF0ZXVyIiwiaWF0IjoxNTg4Njk4NDg1LCJleHAiOjE1ODg5NTc2ODV9.MVQQVL5jykj-r3qke9hv1zTFM2eDSd8qozYANEeeKYU",
 			"type": "string"
 		},
 		{
-			"id": "8b43b950-ba62-435c-8615-ed7c568d6439",
+			"id": "6ed5dfcd-5fc9-4937-a3c1-b13b8460683a",
 			"key": "fake_token",
 			"value": "eyJhbGZG8iOiJub3V2ZWF1IiwibmFtZSI6Im5vdXZlYXUiLCJzdXJuYW1lIjoibm91dmVhdSIsInVzZXJSb2xlIjoiTm91dmVhdSIsImlhdCI6MTU4ODcwMTc1MCwiZXhwIjoxNTg4OTYwOTUwfQ.-oTScAyQmNzNquBkyVwtOWkJuw5TNKXJNLKzUz2T8Bo",
 			"type": "string"
 		},
 		{
-			"id": "6d3daa35-acb4-4704-8d89-003ae753727c",
+			"id": "35c17889-8a6d-403d-aace-8c16af33a9ac",
 			"key": "new_token",
 			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vdXZlYXVAdGVzdC5jb20iLCJwc2V1ZG8iOiJub3V2ZWF1IiwibmFtZSI6Im5vdXZlYXUiLCJzdXJuYW1lIjoibm91dmVhdSIsInVzZXJSb2xlIjoiTm91dmVhdSIsImlhdCI6MTU4ODcwMTc1MCwiZXhwIjoxNTg4OTYwOTUwfQ.-oTScAyQmNzNquBkyVwtOWkJuw5TNKXJNLKzUz2T8Bo",
 			"type": "string"
 		},
 		{
-			"id": "d7c18e25-0c10-4805-962c-27c7c59059be",
+			"id": "5582c848-97af-4370-a67c-aada3265442e",
 			"key": "host_url",
 			"value": "35.180.174.135",
 			"type": "string"
