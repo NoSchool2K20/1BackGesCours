@@ -9,13 +9,23 @@ variables:
 
 stages:
   - build
+  - test
   - pushing
   - deploy
 
-front-build:
+back-build:
   image: trion/ng-cli
   stage: build
   script: "npm install && npm run build"
+
+back-test-integration:
+  image: 
+    name: postman/newman
+    entrypoint: [""]
+  stage: test
+  script: 
+  - "newman --version"
+  - "docker ps"
 
 push-github:
   image: sombralibre/gitclient

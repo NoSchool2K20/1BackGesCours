@@ -1,0 +1,2269 @@
+{
+	"info": {
+		"_postman_id": "6309d40a-4cc9-4516-8fda-31fefd5febba",
+		"name": "qsi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Save new parcours NO KO",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e027aad1-15a6-4895-8794-ee0a54ca9c5b",
+						"exec": [
+							"pm.test(\"Request KO no auth\", function () {\r",
+							"    var json_resp = pm.response.json();\r",
+							"    pm.response.to.have.status(401);\r",
+							"    pm.expect(json_resp.error).to.eq(\"Unauthorized\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\": \"no_TEST\",\n\t\"description\": \"TEST POSTMAN\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host_url}}:8080/parcours",
+					"host": [
+						"{{host_url}}"
+					],
+					"port": "8080",
+					"path": [
+						"parcours"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save new parcours fake KO",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bbc65f37-2dee-47c8-a747-bdfca5776e59",
+						"exec": [
+							"pm.test(\"Request KO fake auth\", function () {\r",
+							"    var json_resp = pm.response.json();\r",
+							"    pm.response.to.have.status(401);\r",
+							"    pm.expect(json_resp.error).to.eq(\"Unauthorized\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{fake_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\": \"fake_TEST\",\n\t\"description\": \"TEST POSTMAN\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host_url}}:8080/parcours",
+					"host": [
+						"{{host_url}}"
+					],
+					"port": "8080",
+					"path": [
+						"parcours"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save new parcours new KO",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "73cd187e-7661-42fe-834c-8fc95b6ad009",
+						"exec": [
+							"pm.test(\"Request KO bad auth\", function () {\r",
+							"    var json_resp = pm.response.json();\r",
+							"    pm.response.to.have.status(401);\r",
+							"    pm.expect(json_resp.error).to.eq(\"Unauthorized\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{new_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\": \"new_TEST\",\n\t\"description\": \"TEST POSTMAN\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host_url}}:8080/parcours",
+					"host": [
+						"{{host_url}}"
+					],
+					"port": "8080",
+					"path": [
+						"parcours"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save new parcours etu KO",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b2f98786-ab73-498f-9edd-5ff1e39c1a2d",
+						"exec": [
+							"pm.test(\"Request KO bad auth\", function () {\r",
+							"    var json_resp = pm.response.json();\r",
+							"    pm.response.to.have.status(401);\r",
+							"    pm.expect(json_resp.error).to.eq(\"Unauthorized\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{etu_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\": \"etu_TEST\",\n\t\"description\": \"TEST POSTMAN\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host_url}}:8080/parcours",
+					"host": [
+						"{{host_url}}"
+					],
+					"port": "8080",
+					"path": [
+						"parcours"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save new parcours prof KO",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "edb85fd3-3b72-461b-94a2-e0439fcdb655",
+						"exec": [
+							"pm.test(\"Request KO bad auth\", function () {\r",
+							"    var json_resp = pm.response.json();\r",
+							"    pm.response.to.have.status(401);\r",
+							"    pm.expect(json_resp.error).to.eq(\"Unauthorized\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{prof_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\": \"prof_TEST\",\n\t\"description\": \"TEST POSTMAN\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host_url}}:8080/parcours",
+					"host": [
+						"{{host_url}}"
+					],
+					"port": "8080",
+					"path": [
+						"parcours"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save new parcours admin OK",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5201db72-4967-4723-a73b-633f9bb3cd06",
+						"exec": [
+							"pm.test(\"Request OK\", function () {\r",
+							"    var json_resp = pm.response.json();\r",
+							"    pm.expect(json_resp.text).to.eq(\"Created parcours\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{admin_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\": \"TEST\",\n\t\"description\": \"TEST POSTMAN\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host_url}}:8080/parcours",
+					"host": [
+						"{{host_url}}"
+					],
+					"port": "8080",
+					"path": [
+						"parcours"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save new parcours admin OK second",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1d5ca5e3-0317-4dbf-8503-080a8be1ae4a",
+						"exec": [
+							"pm.test(\"Request OK\", function () {\r",
+							"    var json_resp = pm.response.json();\r",
+							"    pm.expect(json_resp.text).to.eq(\"Created parcours\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{admin_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\": \"TEST_2\",\n\t\"description\": \"TEST POSTMAN\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host_url}}:8080/parcours",
+					"host": [
+						"{{host_url}}"
+					],
+					"port": "8080",
+					"path": [
+						"parcours"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save new parcours duplicate KO",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b2f98786-ab73-498f-9edd-5ff1e39c1a2d",
+						"exec": [
+							"pm.test(\"Request KO cause already exist parcours\", function () {\r",
+							"    var json_resp = pm.response.json();\r",
+							"    pm.response.to.have.status(400);\r",
+							"    pm.expect(json_resp.error).to.eq(\"INVALID REQUEST OR MISSING MESSAGE FIELD\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{admin_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\": \"TEST\",\n\t\"description\": \"TEST POSTMAN\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host_url}}:8080/parcours",
+					"host": [
+						"{{host_url}}"
+					],
+					"port": "8080",
+					"path": [
+						"parcours"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all parcours NO KO",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b2f98786-ab73-498f-9edd-5ff1e39c1a2d",
+						"exec": [
+							"pm.test(\"Request KO no auth\", function () {\r",
+							"    var json_resp = pm.response.json();\r",
+							"    pm.response.to.have.status(401);\r",
+							"    pm.expect(json_resp.error).to.eq(\"Unauthorized\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host_url}}:8080/parcours",
+					"host": [
+						"{{host_url}}"
+					],
+					"port": "8080",
+					"path": [
+						"parcours"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all parcours fake KO",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "235c23df-7202-4dc0-bc4d-231802351055",
+						"exec": [
+							"pm.test(\"Request KO fake auth\", function () {\r",
+							"    var json_resp = pm.response.json();\r",
+							"    pm.response.to.have.status(401);\r",
+							"    pm.expect(json_resp.error).to.eq(\"Unauthorized\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{fake_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host_url}}:8080/parcours",
+					"host": [
+						"{{host_url}}"
+					],
+					"port": "8080",
+					"path": [
+						"parcours"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all parcours new KO",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "010781e0-cef8-4fe2-b8e2-b624f90d39fd",
+						"exec": [
+							"pm.test(\"Request KO bad auth\", function () {\r",
+							"    var json_resp = pm.response.json();\r",
+							"    pm.response.to.have.status(401);\r",
+							"    pm.expect(json_resp.error).to.eq(\"Unauthorized\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{new_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "192.168.99.100:8080/parcours",
+					"host": [
+						"192",
+						"168",
+						"99",
+						"100"
+					],
+					"port": "8080",
+					"path": [
+						"parcours"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all parcours etu OK",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a31e9490-a737-428b-a481-a56933a033e5",
+						"exec": [
+							"pm.test(\"Only two parcours are present\", function () {\r",
+							"    var json_resp = pm.response.json();\r",
+							"    pm.expect(json_resp.length).to.eq(2);\r",
+							"    pm.expect(json_resp[0].title).to.eq(\"TEST\");\r",
+							"    pm.expect(json_resp[1].title).to.eq(\"TEST_2\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{etu_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host_url}}:8080/parcours",
+					"host": [
+						"{{host_url}}"
+					],
+					"port": "8080",
+					"path": [
+						"parcours"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all parcours prof OK",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "36d0751d-597a-4869-b912-2afc0063fdc9",
+						"exec": [
+							"pm.test(\"Only two parcours are present\", function () {\r",
+							"    var json_resp = pm.response.json();\r",
+							"    pm.expect(json_resp.length).to.eq(2);\r",
+							"    pm.expect(json_resp[0].title).to.eq(\"TEST\");\r",
+							"    pm.expect(json_resp[1].title).to.eq(\"TEST_2\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{prof_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host_url}}:8080/parcours",
+					"host": [
+						"{{host_url}}"
+					],
+					"port": "8080",
+					"path": [
+						"parcours"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all parcours admin OK",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d930fa43-db9e-467f-9777-70e527419be0",
+						"exec": [
+							"pm.test(\"Only two parcours are present\", function () {\r",
+							"    var json_resp = pm.response.json();\r",
+							"    pm.expect(json_resp.length).to.eq(2);\r",
+							"    pm.expect(json_resp[0].title).to.eq(\"TEST\");\r",
+							"    pm.expect(json_resp[1].title).to.eq(\"TEST_2\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{admin_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host_url}}:8080/parcours",
+					"host": [
+						"{{host_url}}"
+					],
+					"port": "8080",
+					"path": [
+						"parcours"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save new module NO KO",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "07534299-7028-4749-aae2-01ad5171c8d2",
+						"exec": [
+							"pm.test(\"Request KO no auth\", function () {\r",
+							"    var json_resp = pm.response.json();\r",
+							"    pm.response.to.have.status(401);\r",
+							"    pm.expect(json_resp.error).to.eq(\"Unauthorized\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\": \"POSTMAN\",\n\t\"description\": \"POSTMAN test module\",\n\t\"parcours\": \"TEST\",\n\t\"niveau\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host_url}}:8080/module",
+					"host": [
+						"{{host_url}}"
+					],
+					"port": "8080",
+					"path": [
+						"module"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save new module fake KO",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f56a4718-4e61-4995-8d68-b43188955998",
+						"exec": [
+							"pm.test(\"Request KO fake auth\", function () {\r",
+							"    var json_resp = pm.response.json();\r",
+							"    pm.response.to.have.status(401);\r",
+							"    pm.expect(json_resp.error).to.eq(\"Unauthorized\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{fake_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\": \"POSTMAN\",\n\t\"description\": \"POSTMAN test module\",\n\t\"parcours\": \"TEST\",\n\t\"niveau\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host_url}}:8080/module",
+					"host": [
+						"{{host_url}}"
+					],
+					"port": "8080",
+					"path": [
+						"module"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save new module new KO",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6dea038a-a6aa-4c0a-a173-520f5a1cb1a7",
+						"exec": [
+							"pm.test(\"Request KO bad auth\", function () {\r",
+							"    var json_resp = pm.response.json();\r",
+							"    pm.response.to.have.status(401);\r",
+							"    pm.expect(json_resp.error).to.eq(\"Unauthorized\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{new_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\": \"POSTMAN\",\n\t\"description\": \"POSTMAN test module\",\n\t\"parcours\": \"TEST\",\n\t\"niveau\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host_url}}:8080/module",
+					"host": [
+						"{{host_url}}"
+					],
+					"port": "8080",
+					"path": [
+						"module"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save new module etu KO",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d15544b4-5a56-4218-8d08-206e3ab477fb",
+						"exec": [
+							"pm.test(\"Request KO bad auth\", function () {\r",
+							"    var json_resp = pm.response.json();\r",
+							"    pm.response.to.have.status(401);\r",
+							"    pm.expect(json_resp.error).to.eq(\"Unauthorized\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{etu_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\": \"POSTMAN\",\n\t\"description\": \"POSTMAN test module\",\n\t\"parcours\": \"TEST\",\n\t\"niveau\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host_url}}:8080/module",
+					"host": [
+						"{{host_url}}"
+					],
+					"port": "8080",
+					"path": [
+						"module"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save new module prof KO",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b77f3cc5-5044-49a8-8357-459c7ca35506",
+						"exec": [
+							"pm.test(\"Request KO bad auth\", function () {\r",
+							"    var json_resp = pm.response.json();\r",
+							"    pm.response.to.have.status(401);\r",
+							"    pm.expect(json_resp.error).to.eq(\"Unauthorized\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{prof_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\": \"POSTMAN\",\n\t\"description\": \"POSTMAN test module\",\n\t\"parcours\": \"TEST\",\n\t\"niveau\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host_url}}:8080/module",
+					"host": [
+						"{{host_url}}"
+					],
+					"port": "8080",
+					"path": [
+						"module"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save new module admin OK",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b2f98786-ab73-498f-9edd-5ff1e39c1a2d",
+						"exec": [
+							"pm.test(\"Request OK\", function () {\r",
+							"    var json_resp = pm.response.json();\r",
+							"    pm.expect(json_resp.text).to.eq(\"Created module\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{admin_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\": \"POSTMAN\",\n\t\"description\": \"POSTMAN test module\",\n\t\"parcours\": \"TEST\",\n\t\"niveau\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host_url}}:8080/module",
+					"host": [
+						"{{host_url}}"
+					],
+					"port": "8080",
+					"path": [
+						"module"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save new module admin OK Second",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "de0930ce-155b-4e9c-938d-69c64cb02e7f",
+						"exec": [
+							"pm.test(\"Request OK\", function () {\r",
+							"    var json_resp = pm.response.json();\r",
+							"    pm.expect(json_resp.text).to.eq(\"Created module\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{admin_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\": \"POSTMAN_2\",\n\t\"description\": \"POSTMAN test module\",\n\t\"parcours\": \"TEST_2\",\n\t\"niveau\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host_url}}:8080/module",
+					"host": [
+						"{{host_url}}"
+					],
+					"port": "8080",
+					"path": [
+						"module"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all modules NO KO",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b2f98786-ab73-498f-9edd-5ff1e39c1a2d",
+						"exec": [
+							"pm.test(\"Request KO no auth\", function () {\r",
+							"    var json_resp = pm.response.json();\r",
+							"    pm.response.to.have.status(401);\r",
+							"    pm.expect(json_resp.error).to.eq(\"Unauthorized\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host_url}}:8080/module",
+					"host": [
+						"{{host_url}}"
+					],
+					"port": "8080",
+					"path": [
+						"module"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all modules fake KO",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0a1554eb-9275-4db2-befa-bdb1714c6396",
+						"exec": [
+							"pm.test(\"Request KO fake auth\", function () {\r",
+							"    var json_resp = pm.response.json();\r",
+							"    pm.response.to.have.status(401);\r",
+							"    pm.expect(json_resp.error).to.eq(\"Unauthorized\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{fake_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host_url}}:8080/module",
+					"host": [
+						"{{host_url}}"
+					],
+					"port": "8080",
+					"path": [
+						"module"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all modules new KO",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "62c34b4b-3e8f-4230-b366-286717344741",
+						"exec": [
+							"pm.test(\"Request KO fake auth\", function () {\r",
+							"    var json_resp = pm.response.json();\r",
+							"    pm.response.to.have.status(401);\r",
+							"    pm.expect(json_resp.error).to.eq(\"Unauthorized\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{new_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host_url}}:8080/module",
+					"host": [
+						"{{host_url}}"
+					],
+					"port": "8080",
+					"path": [
+						"module"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all modules etu OK",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "00b5059d-411d-4eb8-811a-b75b7af38693",
+						"exec": [
+							"pm.test(\"Only 2 modules are present\", function () {\r",
+							"    var json_resp = pm.response.json();\r",
+							"    pm.expect(json_resp.length).to.eq(2);\r",
+							"    pm.expect(json_resp[0].title).to.eq(\"POSTMAN\");\r",
+							"    pm.expect(json_resp[1].title).to.eq(\"POSTMAN_2\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{etu_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host_url}}:8080/module",
+					"host": [
+						"{{host_url}}"
+					],
+					"port": "8080",
+					"path": [
+						"module"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all modules prof OK",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "19eca5d0-c47a-4d73-a051-ea76da1e31f3",
+						"exec": [
+							"pm.test(\"Only 2 modules are present\", function () {\r",
+							"    var json_resp = pm.response.json();\r",
+							"    pm.expect(json_resp.length).to.eq(2);\r",
+							"    pm.expect(json_resp[0].title).to.eq(\"POSTMAN\");\r",
+							"    pm.expect(json_resp[1].title).to.eq(\"POSTMAN_2\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{prof_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host_url}}:8080/module",
+					"host": [
+						"{{host_url}}"
+					],
+					"port": "8080",
+					"path": [
+						"module"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all modules admin OK",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "407c7205-790f-4d68-b52f-04c69f79e5de",
+						"exec": [
+							"pm.test(\"Only 2 modules are present\", function () {\r",
+							"    var json_resp = pm.response.json();\r",
+							"    pm.expect(json_resp.length).to.eq(2);\r",
+							"    pm.expect(json_resp[0].title).to.eq(\"POSTMAN\");\r",
+							"    pm.expect(json_resp[1].title).to.eq(\"POSTMAN_2\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{admin_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host_url}}:8080/module",
+					"host": [
+						"{{host_url}}"
+					],
+					"port": "8080",
+					"path": [
+						"module"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get module by parcours OK",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b2f98786-ab73-498f-9edd-5ff1e39c1a2d",
+						"exec": [
+							"pm.test(\"Only POSTMAN module present\", function () {\r",
+							"    var json_resp = pm.response.json();\r",
+							"    pm.expect(json_resp.length).to.eq(1);\r",
+							"    pm.expect(json_resp[0].title).to.eq(\"POSTMAN\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{etu_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host_url}}:8080/module?parcours=TEST",
+					"host": [
+						"{{host_url}}"
+					],
+					"port": "8080",
+					"path": [
+						"module"
+					],
+					"query": [
+						{
+							"key": "parcours",
+							"value": "TEST"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get module by parcours OK second",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2557c638-3cb4-4b0e-9f7e-9db87ef98310",
+						"exec": [
+							"pm.test(\"Only POSTMAN_2 module present\", function () {\r",
+							"    var json_resp = pm.response.json();\r",
+							"    pm.expect(json_resp.length).to.eq(1);\r",
+							"    pm.expect(json_resp[0].title).to.eq(\"POSTMAN_2\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{etu_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host_url}}:8080/module?parcours=TEST_2",
+					"host": [
+						"{{host_url}}"
+					],
+					"port": "8080",
+					"path": [
+						"module"
+					],
+					"query": [
+						{
+							"key": "parcours",
+							"value": "TEST_2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get module by parcours NONE",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b2f98786-ab73-498f-9edd-5ff1e39c1a2d",
+						"exec": [
+							"pm.test(\"Only 0 module present\", function () {\r",
+							"    var json_resp = pm.response.json();\r",
+							"    pm.expect(json_resp.length).to.eq(0);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{etu_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host_url}}:8080/module?parcours=NOP",
+					"host": [
+						"{{host_url}}"
+					],
+					"port": "8080",
+					"path": [
+						"module"
+					],
+					"query": [
+						{
+							"key": "parcours",
+							"value": "NOP"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save new course NO KO",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b2f98786-ab73-498f-9edd-5ff1e39c1a2d",
+						"exec": [
+							"pm.test(\"Request KO no auth\", function () {\r",
+							"    var json_resp = pm.response.json();\r",
+							"    pm.response.to.have.status(401);\r",
+							"    pm.expect(json_resp.error).to.eq(\"Unauthorized\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\": \"postman test\",\n\t\"description\": \"descritpion of postman test\",\n\t\"video_url\": \"url_video\",\n\t\"modules\": \"POSTMAN\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host_url}}:8080/cours",
+					"host": [
+						"{{host_url}}"
+					],
+					"port": "8080",
+					"path": [
+						"cours"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save new course fake KO",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8a3eac13-6643-4f0c-88d1-7ebca7ad046b",
+						"exec": [
+							"pm.test(\"Request KO fake auth\", function () {\r",
+							"    var json_resp = pm.response.json();\r",
+							"    pm.response.to.have.status(401);\r",
+							"    pm.expect(json_resp.error).to.eq(\"Unauthorized\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{fake_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\": \"postman test\",\n\t\"description\": \"descritpion of postman test\",\n\t\"video_url\": \"url_video\",\n\t\"modules\": \"POSTMAN\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host_url}}:8080/cours",
+					"host": [
+						"{{host_url}}"
+					],
+					"port": "8080",
+					"path": [
+						"cours"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save new course new KO",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ce3ab132-4be4-43d5-8ade-4a234ee6d644",
+						"exec": [
+							"pm.test(\"Request KO new auth\", function () {\r",
+							"    var json_resp = pm.response.json();\r",
+							"    pm.response.to.have.status(401);\r",
+							"    pm.expect(json_resp.error).to.eq(\"Unauthorized\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{new_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\": \"postman test\",\n\t\"description\": \"descritpion of postman test\",\n\t\"video_url\": \"url_video\",\n\t\"modules\": \"POSTMAN\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host_url}}:8080/cours",
+					"host": [
+						"{{host_url}}"
+					],
+					"port": "8080",
+					"path": [
+						"cours"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save new course etu KO",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "06f48a04-57e3-4833-a13a-094bc8f7a279",
+						"exec": [
+							"pm.test(\"Request KO bad auth\", function () {\r",
+							"    var json_resp = pm.response.json();\r",
+							"    pm.response.to.have.status(401);\r",
+							"    pm.expect(json_resp.error).to.eq(\"Unauthorized\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{etu_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\": \"postman test\",\n\t\"description\": \"descritpion of postman test\",\n\t\"video_url\": \"url_video\",\n\t\"modules\": \"POSTMAN\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host_url}}:8080/cours",
+					"host": [
+						"{{host_url}}"
+					],
+					"port": "8080",
+					"path": [
+						"cours"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save new course prof OK",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8a13a62a-8d93-454d-8e50-da16e03b2561",
+						"exec": [
+							"pm.test(\"Request OK\", function () {\r",
+							"    var json_resp = pm.response.json();\r",
+							"    pm.expect(json_resp.success).to.eq(\"Created cours\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{prof_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\": \"postman test prof\",\n\t\"description\": \"descritpion of postman test\",\n\t\"video_url\": \"url_video\",\n\t\"modules\": \"POSTMAN\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host_url}}:8080/cours",
+					"host": [
+						"{{host_url}}"
+					],
+					"port": "8080",
+					"path": [
+						"cours"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save new course admin OK",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "256226d4-d4aa-4f6f-b54d-6fcd35e35bf0",
+						"exec": [
+							"pm.test(\"Request OK\", function () {\r",
+							"    var json_resp = pm.response.json();\r",
+							"    pm.expect(json_resp.success).to.eq(\"Created cours\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{admin_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\": \"postman test admin\",\n\t\"description\": \"descritpion of postman test\",\n\t\"video_url\": \"url_video\",\n\t\"modules\": \"POSTMAN_2\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host_url}}:8080/cours",
+					"host": [
+						"{{host_url}}"
+					],
+					"port": "8080",
+					"path": [
+						"cours"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all courses NO KO",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b2f98786-ab73-498f-9edd-5ff1e39c1a2d",
+						"exec": [
+							"pm.test(\"Request KO no auth\", function () {\r",
+							"    var json_resp = pm.response.json();\r",
+							"    pm.response.to.have.status(401);\r",
+							"    pm.expect(json_resp.error).to.eq(\"Unauthorized\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host_url}}:8080/cours",
+					"host": [
+						"{{host_url}}"
+					],
+					"port": "8080",
+					"path": [
+						"cours"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all courses fake KO",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6a96cd6b-e598-43b5-8628-2bb22db21cfd",
+						"exec": [
+							"pm.test(\"Request KO fake auth\", function () {\r",
+							"    var json_resp = pm.response.json();\r",
+							"    pm.response.to.have.status(401);\r",
+							"    pm.expect(json_resp.error).to.eq(\"Unauthorized\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{fake_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host_url}}:8080/cours",
+					"host": [
+						"{{host_url}}"
+					],
+					"port": "8080",
+					"path": [
+						"cours"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all courses new KO",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b3758f7c-832d-4a3d-ad52-b8b5667e33df",
+						"exec": [
+							"pm.test(\"Request KO new auth\", function () {\r",
+							"    var json_resp = pm.response.json();\r",
+							"    pm.response.to.have.status(401);\r",
+							"    pm.expect(json_resp.error).to.eq(\"Unauthorized\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{new_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host_url}}:8080/cours",
+					"host": [
+						"{{host_url}}"
+					],
+					"port": "8080",
+					"path": [
+						"cours"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all courses etu OK",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5dbe895c-39ee-4e78-b967-920de2b92225",
+						"exec": [
+							"pm.test(\"Only one course\", function () {\r",
+							"    var json_resp = pm.response.json();\r",
+							"    pm.expect(json_resp.length).to.eq(2);\r",
+							"    pm.expect(json_resp[0].title).to.eq(\"postman test admin\");\r",
+							"    pm.expect(json_resp[1].title).to.eq(\"postman test prof\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{etu_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host_url}}:8080/cours",
+					"host": [
+						"{{host_url}}"
+					],
+					"port": "8080",
+					"path": [
+						"cours"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all courses prof OK",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ff43de4c-60a2-4e79-bb27-1a7b5fffdcd0",
+						"exec": [
+							"pm.test(\"Only one course\", function () {\r",
+							"    var json_resp = pm.response.json();\r",
+							"    pm.expect(json_resp.length).to.eq(2);\r",
+							"    pm.expect(json_resp[0].title).to.eq(\"postman test admin\");\r",
+							"    pm.expect(json_resp[1].title).to.eq(\"postman test prof\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{prof_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host_url}}:8080/cours",
+					"host": [
+						"{{host_url}}"
+					],
+					"port": "8080",
+					"path": [
+						"cours"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all courses admin OK",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4261b7f8-e147-413a-b59f-4c6161c10423",
+						"exec": [
+							"pm.test(\"Only one course\", function () {\r",
+							"    var json_resp = pm.response.json();\r",
+							"    pm.expect(json_resp.length).to.eq(2);\r",
+							"    pm.expect(json_resp[0].title).to.eq(\"postman test admin\");\r",
+							"    pm.expect(json_resp[1].title).to.eq(\"postman test prof\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{admin_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host_url}}:8080/cours",
+					"host": [
+						"{{host_url}}"
+					],
+					"port": "8080",
+					"path": [
+						"cours"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get specifics courses",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0675e755-39c9-4422-9222-4d88cbf9ab1c",
+						"exec": [
+							"pm.test(\"Only one course\", function () {\r",
+							"    var json_resp = pm.response.json();\r",
+							"    pm.expect(json_resp.length).to.eq(1);\r",
+							"    pm.expect(json_resp[0].title).to.eq(\"postman test prof\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{etu_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host_url}}:8080/cours?title=postman test prof",
+					"host": [
+						"{{host_url}}"
+					],
+					"port": "8080",
+					"path": [
+						"cours"
+					],
+					"query": [
+						{
+							"key": "title",
+							"value": "postman test prof"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get courses by module OK",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b2f98786-ab73-498f-9edd-5ff1e39c1a2d",
+						"exec": [
+							"pm.test(\"Only one course\", function () {\r",
+							"    var json_resp = pm.response.json();\r",
+							"    pm.expect(json_resp.length).to.eq(1);\r",
+							"    pm.expect(json_resp[0].title).to.eq(\"postman test prof\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{etu_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host_url}}:8080/cours?module=POSTMAN",
+					"host": [
+						"{{host_url}}"
+					],
+					"port": "8080",
+					"path": [
+						"cours"
+					],
+					"query": [
+						{
+							"key": "module",
+							"value": "POSTMAN"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get courses by module OK second",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "38b6cc4f-ef1f-441b-b27c-d3fb11179d85",
+						"exec": [
+							"pm.test(\"Only one course\", function () {\r",
+							"    var json_resp = pm.response.json();\r",
+							"    pm.expect(json_resp.length).to.eq(1);\r",
+							"    pm.expect(json_resp[0].title).to.eq(\"postman test admin\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{etu_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host_url}}:8080/cours?module=POSTMAN_2",
+					"host": [
+						"{{host_url}}"
+					],
+					"port": "8080",
+					"path": [
+						"cours"
+					],
+					"query": [
+						{
+							"key": "module",
+							"value": "POSTMAN_2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get courses by module NONE",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b2f98786-ab73-498f-9edd-5ff1e39c1a2d",
+						"exec": [
+							"pm.test(\"Only one course\", function () {\r",
+							"    var json_resp = pm.response.json();\r",
+							"    pm.expect(json_resp.length).to.eq(0);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{etu_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host_url}}:8080/cours?module=NOP",
+					"host": [
+						"{{host_url}}"
+					],
+					"port": "8080",
+					"path": [
+						"cours"
+					],
+					"query": [
+						{
+							"key": "module",
+							"value": "NOP"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "3edaedf6-e59d-4695-a0ac-a710b7ec4bfe",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "8627ca6e-81e3-49b9-86a5-61c972efc8ed",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "f3fc1a8f-63e9-42cb-a6ea-d5c2eccb4181",
+			"key": "etu_token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImV0dWRpYW50QHRlc3QuY29tIiwicHNldWRvIjoiZXR1ZGlhbnQiLCJuYW1lIjoiZXR1ZGlhbnQiLCJzdXJuYW1lIjoiZXR1ZGlhbnQiLCJ1c2VyUm9sZSI6IkV0dWRpYW50IiwiaWF0IjoxNTg4NzAwMDAzLCJleHAiOjE1ODg5NTkyMDN9.7dP16z-H82s1-QekAje50uUxswm-D5RxcWuzlBr3Fl0",
+			"type": "string"
+		},
+		{
+			"id": "8a511415-52ff-49d6-b0bf-f77ad3d716df",
+			"key": "prof_token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InByb2Zlc3NldXJAdGVzdC5jb20iLCJwc2V1ZG8iOiJwcm9mZXNzZXVyIiwibmFtZSI6InByb2Zlc3NldXIiLCJzdXJuYW1lIjoicHJvZmVzc2V1ciIsInVzZXJSb2xlIjoiUHJvZmVzc2V1ciIsImlhdCI6MTU4ODY5OTY3MiwiZXhwIjoxNTg4OTU4ODcyfQ.PRqjPU7QZXsvPbb45wo-AqbAjIh7EEnuA3FPvrFjsLQ",
+			"type": "string"
+		},
+		{
+			"id": "146441b1-e988-47eb-a3f9-190d3f9d1113",
+			"key": "admin_token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHRlc3QuY29tIiwicHNldWRvIjoiYWRtaW4iLCJuYW1lIjoiYWRtaW4iLCJzdXJuYW1lIjoiYWRtaW4iLCJ1c2VyUm9sZSI6IkFkbWluaXN0cmF0ZXVyIiwiaWF0IjoxNTg4Njk4NDg1LCJleHAiOjE1ODg5NTc2ODV9.MVQQVL5jykj-r3qke9hv1zTFM2eDSd8qozYANEeeKYU",
+			"type": "string"
+		},
+		{
+			"id": "0c6723f6-51a7-4474-b240-9270af934a9f",
+			"key": "fake_token",
+			"value": "eyJhbGZG8iOiJub3V2ZWF1IiwibmFtZSI6Im5vdXZlYXUiLCJzdXJuYW1lIjoibm91dmVhdSIsInVzZXJSb2xlIjoiTm91dmVhdSIsImlhdCI6MTU4ODcwMTc1MCwiZXhwIjoxNTg4OTYwOTUwfQ.-oTScAyQmNzNquBkyVwtOWkJuw5TNKXJNLKzUz2T8Bo",
+			"type": "string"
+		},
+		{
+			"id": "7136f2b5-4c5d-4b58-806a-28a5aff17a31",
+			"key": "new_token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vdXZlYXVAdGVzdC5jb20iLCJwc2V1ZG8iOiJub3V2ZWF1IiwibmFtZSI6Im5vdXZlYXUiLCJzdXJuYW1lIjoibm91dmVhdSIsInVzZXJSb2xlIjoiTm91dmVhdSIsImlhdCI6MTU4ODcwMTc1MCwiZXhwIjoxNTg4OTYwOTUwfQ.-oTScAyQmNzNquBkyVwtOWkJuw5TNKXJNLKzUz2T8Bo",
+			"type": "string"
+		},
+		{
+			"id": "c48c94f5-59ad-4011-9e19-a98d8cdea674",
+			"key": "host_url",
+			"value": "192.168.99.100",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
