@@ -36,7 +36,6 @@ module Cours = {
 
  let createCours =
      PromiseMiddleware.from((_next, req, rep) => {
-       let token = Base64Decoder.Decoder.decodeToken(AuthHandler.getToken(req));
        Js.Promise.(
          (
              switch (Request.bodyJSON(req)) {
@@ -58,7 +57,7 @@ module Cours = {
                          );
                      }
                      ignore{
-                      RabbitMQ.newCourse(title, token.name, token.email);
+                      RabbitMQ.newCourse(title);
                      }
                      ModuleCoursDAO.Modulecours.create(
                         modules,

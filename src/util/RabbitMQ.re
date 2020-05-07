@@ -51,6 +51,7 @@ let createContent = (username : string, email : string, content : string, subjec
               }
           ]
      }
+     message
  };
 
 // Set up a channel listening for messages in the queue QnewCourse.
@@ -89,13 +90,11 @@ let channelViewWrapper =
     },
   );
 
-let newCourse = (courseName : string , username : string, email : string) => {
-  let content = "Nous vous confirmons la création de votre cours "++courseName;
-  let subject = "Création d'un nouveau cours !";
+let newCourse = (courseName : string) => {
   Amqp.ChannelWrapper.sendToQueue(
     channelNewWrapper,
     newCourse_qn,
-    createContent(username, email, content, subject),
+    {"CourseName": courseName},
     Js.Obj.empty(),
   )
   |> Js.Promise.then_(msg => {
