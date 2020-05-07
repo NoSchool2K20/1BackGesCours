@@ -12,7 +12,6 @@ stages:
   - build
   - testdeploy
   - test
-  - pushing
   - deploy
 
 back-build:
@@ -49,7 +48,7 @@ back-test-integration:
 
 push-github:
   image: sombralibre/gitclient
-  stage: pushing
+  stage: deploy
   script: 
   - git config --global user.email "deblock.adrien62@yahoo.fr"
   - git config --global user.name "Adrien deblock"
