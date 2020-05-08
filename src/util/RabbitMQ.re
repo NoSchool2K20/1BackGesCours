@@ -24,33 +24,42 @@ Amqp.AmqpConnectionManager.on(
 |> ignore;
 
 let createContent = (username : string, email : string, content : string, subject : string) => {
-    let message = {
-          "personalizations":
-          [
-              {
-                  "to":
-                  [
-                      {
-                          "email": email,
-                          "name": username
-                      }
-                  ],
-                  "subject": subject
-              }
-          ],
-          "from":
-          {
-              "email": "admin@noschool2k20.fr",
-              "name": "NoReply NoSchool 2K20"
-          },
-          "content":
-          [
-              {
-                  "type": "text/plain",
-                  "value": content
-              }
-          ]
-     }
+    let message =
+        Json.Encode.(
+            object_([
+              (
+                "personalizations",
+                jsonArray([|
+                  object_([
+                    (
+                      "to",
+                      jsonArray([|
+                        object_([
+                          ("email", string(email)),
+                          ("name", string(username)),
+                        ]),
+                      |]),
+                    ),
+                    ("subject", string(subject)),
+                  ]),
+                |]),
+              ),
+              (
+                "from",
+                object_([("email", string("admin@noschool2k20.fr")), ("name", string("NoReply NoSchool 2K20"))]),
+              ),
+              (
+                "content",
+                jsonArray([|
+                  object_([
+                    ("type", string("text/plain")),
+                    ("value", string(content)),
+                  ]),
+                |]),
+              ),
+            ])
+          );
+     Js.Console.info(message)
      message
  };
 
@@ -106,7 +115,7 @@ let newCourse = (courseName : string) => {
 };
 
 let viewCourse = (courseName : string , username : string, email : string) => {
-  let content = "Le cours " ++ courseName ++ " vient d'être consulté";
+  let content = "Le cours " ++ courseName ++ " vient d'etre consulte";
   let subject = "Consultation d'un cours";
   Amqp.ChannelWrapper.sendToQueue(
     channelViewWrapper,
