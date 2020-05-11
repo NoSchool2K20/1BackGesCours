@@ -40,7 +40,8 @@ Use command
 
 # Url & Routes
 
-The preprod url is `http://18.220.58.155:8080` 
+The prod url is `http://18.220.58.155:8080` 
+The pré-prod url is `http://35.180.174.135:8080`
 
 For each route to call, you need to put your user token in the header of the request
 
