@@ -6,6 +6,182 @@
 	},
 	"item": [
 		{
+			"name": "connect user nouveau",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "038f0c03-1466-4acb-bb47-4878a8f5187f",
+						"exec": [
+							"pm.test(\"Save token\", function () {\r",
+							"    var json_resp = pm.response.json();\r",
+							"    pm.globals.set(\"new_token\", json_resp.token);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"nouveau@test.com\",\n\t\"password\": \"nouveau\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://noschool-authentication.cleverapps.io/connection",
+					"protocol": "https",
+					"host": [
+						"noschool-authentication",
+						"cleverapps",
+						"io"
+					],
+					"path": [
+						"connection"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "connect user etudiant",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5bc33593-4562-429c-b7ac-062ee6e769fb",
+						"exec": [
+							"pm.test(\"Save token\", function () {\r",
+							"    var json_resp = pm.response.json();\r",
+							"    pm.globals.set(\"etu_token\", json_resp.token);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"etudiant@test.com\",\n\t\"password\": \"etudiant\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://noschool-authentication.cleverapps.io/connection",
+					"protocol": "https",
+					"host": [
+						"noschool-authentication",
+						"cleverapps",
+						"io"
+					],
+					"path": [
+						"connection"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "connect user professeur",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "417f351b-8709-4f3b-92b0-73768eb6e975",
+						"exec": [
+							"pm.test(\"Save token\", function () {\r",
+							"    var json_resp = pm.response.json();\r",
+							"    pm.globals.set(\"prof_token\", json_resp.token);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"professeur@test.com\",\n\t\"password\": \"professeur\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://noschool-authentication.cleverapps.io/connection",
+					"protocol": "https",
+					"host": [
+						"noschool-authentication",
+						"cleverapps",
+						"io"
+					],
+					"path": [
+						"connection"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "connect user admin",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ba13db00-1a7b-4cdc-b79d-bfae6461fb6f",
+						"exec": [
+							"pm.test(\"Save token\", function () {\r",
+							"    var json_resp = pm.response.json();\r",
+							"    pm.globals.set(\"admin_token\", json_resp.token);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"admin@test.com\",\n\t\"password\": \"admin\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://noschool-authentication.cleverapps.io/connection",
+					"protocol": "https",
+					"host": [
+						"noschool-authentication",
+						"cleverapps",
+						"io"
+					],
+					"path": [
+						"connection"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Save new parcours NO KO",
 			"event": [
 				{
@@ -2226,37 +2402,37 @@
 	],
 	"variable": [
 		{
-			"id": "4187ff93-969b-4ce7-af9c-2f018809c703",
+			"id": "bb0e581e-625d-404c-a39a-0b00b74f6e21",
 			"key": "etu_token",
 			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImV0dWRpYW50QHRlc3QuY29tIiwicHNldWRvIjoiZXR1ZGlhbnQiLCJuYW1lIjoiZXR1ZGlhbnQiLCJzdXJuYW1lIjoiZXR1ZGlhbnQiLCJ1c2VyUm9sZSI6IkV0dWRpYW50IiwiaWF0IjoxNTg4NzAwMDAzLCJleHAiOjE1ODg5NTkyMDN9.7dP16z-H82s1-QekAje50uUxswm-D5RxcWuzlBr3Fl0",
 			"type": "string"
 		},
 		{
-			"id": "0b83d554-8a35-47b0-88d5-d5224d89e2ec",
+			"id": "915f0ec2-7669-4da8-bc60-6a73f0c28de9",
 			"key": "prof_token",
 			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InByb2Zlc3NldXJAdGVzdC5jb20iLCJwc2V1ZG8iOiJwcm9mZXNzZXVyIiwibmFtZSI6InByb2Zlc3NldXIiLCJzdXJuYW1lIjoicHJvZmVzc2V1ciIsInVzZXJSb2xlIjoiUHJvZmVzc2V1ciIsImlhdCI6MTU4ODY5OTY3MiwiZXhwIjoxNTg4OTU4ODcyfQ.PRqjPU7QZXsvPbb45wo-AqbAjIh7EEnuA3FPvrFjsLQ",
 			"type": "string"
 		},
 		{
-			"id": "968dc85e-4865-4b23-a403-6c35c091b5ce",
+			"id": "e2d14ecc-cfbe-4e7a-85fc-c0758545a583",
 			"key": "admin_token",
 			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHRlc3QuY29tIiwicHNldWRvIjoiYWRtaW4iLCJuYW1lIjoiYWRtaW4iLCJzdXJuYW1lIjoiYWRtaW4iLCJ1c2VyUm9sZSI6IkFkbWluaXN0cmF0ZXVyIiwiaWF0IjoxNTg4Njk4NDg1LCJleHAiOjE1ODg5NTc2ODV9.MVQQVL5jykj-r3qke9hv1zTFM2eDSd8qozYANEeeKYU",
 			"type": "string"
 		},
 		{
-			"id": "6ed5dfcd-5fc9-4937-a3c1-b13b8460683a",
+			"id": "dfaa0a18-df72-40f2-aa97-e98ee63db138",
 			"key": "fake_token",
 			"value": "eyJhbGZG8iOiJub3V2ZWF1IiwibmFtZSI6Im5vdXZlYXUiLCJzdXJuYW1lIjoibm91dmVhdSIsInVzZXJSb2xlIjoiTm91dmVhdSIsImlhdCI6MTU4ODcwMTc1MCwiZXhwIjoxNTg4OTYwOTUwfQ.-oTScAyQmNzNquBkyVwtOWkJuw5TNKXJNLKzUz2T8Bo",
 			"type": "string"
 		},
 		{
-			"id": "35c17889-8a6d-403d-aace-8c16af33a9ac",
+			"id": "32d03f74-61e3-446d-8e84-333c6cf3ec58",
 			"key": "new_token",
 			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vdXZlYXVAdGVzdC5jb20iLCJwc2V1ZG8iOiJub3V2ZWF1IiwibmFtZSI6Im5vdXZlYXUiLCJzdXJuYW1lIjoibm91dmVhdSIsInVzZXJSb2xlIjoiTm91dmVhdSIsImlhdCI6MTU4ODcwMTc1MCwiZXhwIjoxNTg4OTYwOTUwfQ.-oTScAyQmNzNquBkyVwtOWkJuw5TNKXJNLKzUz2T8Bo",
 			"type": "string"
 		},
 		{
-			"id": "5582c848-97af-4370-a67c-aada3265442e",
+			"id": "07926f5d-0eba-4e16-874b-1c9d8637f31c",
 			"key": "host_url",
 			"value": "35.180.174.135",
 			"type": "string"
