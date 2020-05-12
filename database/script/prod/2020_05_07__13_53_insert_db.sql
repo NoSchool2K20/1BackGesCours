@@ -15,7 +15,7 @@ INSERT INTO qsi.cours(title, description, video_url) VALUES ('Blockchain et cryp
 INSERT INTO qsi.cours(title, description, video_url) VALUES ('Rappels mathematiques','Ce cours vise a rappeler et approfondir les notions mathematiques necessaires a la poursuite du programme.','https://www.youtube.com/embed/F6-qP8vvJYg');
 INSERT INTO qsi.cours(title, description, video_url) VALUES ('Securite des reseaux et des systemes informatiques','Ce cours vise a consolider les connaissances en reseaux et systemes des etudiants.','https://www.youtube.com/embed/jGRkdzEd0PY');
 INSERT INTO qsi.cours(title, description, video_url) VALUES ('Algorithmes et complexite','L''objectif du cours est de preparer les etudiants a repondre aux questions de conception, d''efficacite et de complexite. d''algorithmes.','https://www.youtube.com/embed/x1sFJ_HKEaI');
-INSERT INTO qsi.cours(title, description, video_url) VALUES ('Technologies pour applications connectees','L''UE Technologies pour Applications Connectees (TAC) se concentre sur le developpement des applications connectees a Internet. Nous visons ici a d''abord approfondi les applications Web classiques (HTML5 + JavaScript) et les applications mobiles (natives)','https://www.youtube.com/embed/_JNeiGbAgL4');
+INSERT INTO qsi.cours(title, description, video_url) VALUES ('Technologies pour applications connectees','L''UE Technologies pour Applications Connectees (TAC) se concentre sur le developpement des applications connectees a Internet.','https://www.youtube.com/embed/_JNeiGbAgL4');
 
 INSERT INTO qsi.module_cours(module, cours) VALUES ('Master 1 AC', 'Blockchain et crypto-monnaie : analyse et mise en oeuvre');
 INSERT INTO qsi.module_cours(module, cours) VALUES ('Master 1 AC', 'Rappels mathematiques');
