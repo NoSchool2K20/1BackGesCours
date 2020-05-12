@@ -53,7 +53,6 @@ push-github:
   - git config --global user.email "deblock.adrien62@yahoo.fr"
   - git config --global user.name "Adrien deblock"
   - git remote set-url origin https://$GIT_ACCOUNT:$GIT_CREDENTIAL@github.com/NoSchool2K20/1BackGesCours.git
-  - git pull 
   - git push origin ${CI_COMMIT_SHA}:master
   only:
   - master
